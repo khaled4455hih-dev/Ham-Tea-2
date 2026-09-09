@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --bg: #FAF0DC;
+  --bg-warm: #F5E8C8;
+  --maroon: #6B1414;
+  --maroon-deep: #4A0E0E;
+  --gold: #C8871A;
+  --gold-light: #E5A83A;
+  --cream-card: #FFF8EE;
+  --text-body: #3D1010;
+  --text-muted: #8B5E3C;
+  --divider: rgba(107, 20, 20, 0.15);
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: 'Noto Sans Arabic', sans-serif;
+  color: var(--text-body);
+  direction: rtl;
+}
+
+.font-display {
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar { width: 0; }
+
+/* Smooth anchor behavior */
+html { scroll-behavior: smooth; }
