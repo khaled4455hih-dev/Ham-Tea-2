@@ -1,4 +1,4 @@
-import shahiZafranImg from "@/imports/shahi-zafran.jpg";
+import shahiZafranImg from "@/imports/shahi-zafran.jpeg";
 import logoImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.28.39.jpeg"
 import zaatarImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__1_.jpeg"
 import sausageCheeseImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__2_.jpeg"
@@ -312,7 +312,7 @@ const shabatiItems = [
     name: "شباتي بيض",
     desc: "شباتي طازج محشو بالبيض، خفيف ولذيذ",
     price: "6",
-    image: shahizafranImg,
+    image: shahiZafranImg,
   },
   
 ]
