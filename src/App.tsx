@@ -155,10 +155,12 @@ function MenuItem({
   name,
   desc,
   price,
+  image,
 }: {
   name: string
   desc?: string
   price: string
+  image?: string
 }) {
   return (
     <div
@@ -180,8 +182,17 @@ function MenuItem({
             {desc}
           </p>
         )}
-      </div>
-      <div className="shrink-0 text-left">
+     </div>
+
+{image && (
+  <img
+    src={image}
+    alt={name}
+    className="w-20 h-20 object-cover rounded-xl shrink-0"
+  />
+)}
+
+<div className="shrink-0 text-left">
         <span
           className="font-display text-base font-bold tabular-nums"
           style={{ color: "var(--gold)" }}
