@@ -404,7 +404,7 @@ export default function App() {
           className="relative z-10 font-display text-base mt-1"
           style={{ color: "var(--gold)", letterSpacing: "0.04em" }}
         >
-          نفرم مزاجك
+          نفهم مزاجك
         </p>
 
         {/* Divider ornament */}
