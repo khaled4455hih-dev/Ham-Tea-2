@@ -1,3 +1,4 @@
+import shahiZafranImg from "@/imports/shahi-zafran.jpg";
 import logoImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.28.39.jpeg"
 import zaatarImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__1_.jpeg"
 import sausageCheeseImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__2_.jpeg"
@@ -306,6 +307,14 @@ const shabatiItems = [
     desc: "شباتي طازج يومياً محضر على الطاوة، مع جبن طبيعي طازج وحلاوة طحينية فاخرة",
     price: "15",
   },
+
+  {
+    name: "شباتي بيض",
+    desc: "شباتي طازج محشو بالبيض، خفيف ولذيذ",
+    price: "6",
+    image: shahizafranImg,
+  },
+  
 ]
 
 const hotTeaItems = [
