@@ -1026,7 +1026,7 @@ export default function App() {
           }}
         >
           <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            ✦ الأسعار تقديرية وقابلة للتعديل
+            
           </p>
         </div>
       </main>
