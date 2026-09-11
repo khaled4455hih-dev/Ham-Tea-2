@@ -1,4 +1,4 @@
-import shahiZafranImg from "@/imports/shahi-zafran.jpeg";
+import { useState } from "react"
 import logoImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.28.39.jpeg"
 import zaatarImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__1_.jpeg"
 import sausageCheeseImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__2_.jpeg"
@@ -22,7 +22,11 @@ import saudiCoffeeImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.54__6_
 import karakImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.54__7_.jpeg"
 import naturalTeaImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.54__8_.jpeg"
 import coffeeImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.54__1_.jpeg"
-
+ 
+// ─────────────────────────────────────────────────────────────
+// Decorative helpers (unchanged look & feel from the original design)
+// ─────────────────────────────────────────────────────────────
+ 
 // Geometric pattern from logo: diamonds + chevrons in maroon and gold
 function GeometricPattern({
   opacity = 0.12,
@@ -71,7 +75,7 @@ function GeometricPattern({
     </svg>
   )
 }
-
+ 
 function OrnamentalDivider({ label }: { label?: string }) {
   return (
     <div className="flex items-center gap-3 my-1">
@@ -109,7 +113,7 @@ function OrnamentalDivider({ label }: { label?: string }) {
     </div>
   )
 }
-
+ 
 function CategoryHeader({ ar }: { ar: string }) {
   return (
     <div className="mb-6">
@@ -117,7 +121,7 @@ function CategoryHeader({ ar }: { ar: string }) {
       <div className="flex items-center justify-center gap-3 my-3">
         <DiamondIcon />
         <h2
-          className="font-display text-2xl font-bold"
+          className="font-display text-2xl font-bold text-center"
           style={{ color: "var(--maroon)" }}
         >
           {ar}
@@ -128,7 +132,7 @@ function CategoryHeader({ ar }: { ar: string }) {
     </div>
   )
 }
-
+ 
 function DiamondIcon() {
   return (
     <svg
@@ -150,7 +154,8 @@ function DiamondIcon() {
     </svg>
   )
 }
-
+ 
+// Single-price menu row (used for cold drinks, sweets, shabati, fatayer)
 function MenuItem({
   name,
   desc,
@@ -182,17 +187,17 @@ function MenuItem({
             {desc}
           </p>
         )}
-     </div>
-
-{image && (
-  <img
-    src={image}
-    alt={name}
-    className="w-20 h-20 object-cover rounded-xl shrink-0"
-  />
-)}
-
-<div className="shrink-0 text-left">
+      </div>
+ 
+      {image && (
+        <img
+          src={image}
+          alt={name}
+          className="w-20 h-20 object-cover rounded-xl shrink-0"
+        />
+      )}
+ 
+      <div className="shrink-0 text-left">
         <span
           className="font-display text-base font-bold tabular-nums"
           style={{ color: "var(--gold)" }}
@@ -207,7 +212,79 @@ function MenuItem({
     </div>
   )
 }
-
+ 
+// Multi-size menu row (used for hot cups + coffee of the day: وسط/كبير/زجاج)
+function SizePriceItem({
+  name,
+  desc,
+  sizes,
+  image,
+}: {
+  name: string
+  desc?: string
+  sizes: { label: string; price: string }[]
+  image?: string
+}) {
+  return (
+    <div
+      className="py-4 flex items-start justify-between gap-3"
+      style={{ borderBottom: "1px solid var(--divider)" }}
+    >
+      <div className="flex-1 min-w-0">
+        <p
+          className="font-display text-base font-semibold leading-snug"
+          style={{ color: "var(--maroon)" }}
+        >
+          {name}
+        </p>
+        {desc && (
+          <p
+            className="text-xs mt-0.5 leading-relaxed"
+            style={{ color: "var(--text-muted)" }}
+          >
+            {desc}
+          </p>
+        )}
+      </div>
+ 
+      {image && (
+        <img
+          src={image}
+          alt={name}
+          className="w-16 h-16 object-cover rounded-xl shrink-0"
+        />
+      )}
+ 
+      <div className="shrink-0 flex gap-1.5">
+        {sizes.map((s) => (
+          <div
+            key={s.label}
+            className="flex flex-col items-center justify-center rounded-lg px-2 py-1"
+            style={{
+              background: "rgba(200,135,26,0.08)",
+              border: "1px solid rgba(200,135,26,0.25)",
+              minWidth: 42,
+            }}
+          >
+            <span
+              className="text-[9px] leading-none mb-0.5"
+              style={{ color: "var(--text-muted)" }}
+            >
+              {s.label}
+            </span>
+            <span
+              className="font-display text-sm font-bold leading-none tabular-nums"
+              style={{ color: "var(--gold)" }}
+            >
+              {s.price}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+ 
 function ProductPhoto({
   src,
   alt,
@@ -242,149 +319,247 @@ function ProductPhoto({
     </div>
   )
 }
-
-const fatayerItems = [
+ 
+// ─────────────────────────────────────────────────────────────
+// Tabs
+// ─────────────────────────────────────────────────────────────
+ 
+const TABS = [
+  { id: "hot-cups", label: "مشروبات حارة (أكواب)" },
+  { id: "coffee-today", label: "قهوة اليوم" },
+  { id: "cold-drinks", label: "مشروبات باردة" },
+  { id: "sweets", label: "حلويات" },
+  { id: "nuts", label: "المكسرات والفشار" },
+  { id: "shabati", label: "شباتي" },
+  { id: "fatayer", label: "فطائر" },
+  { id: "majlis", label: "مجلس شاي هام" },
+] as const
+ 
+type TabId = (typeof TABS)[number]["id"]
+ 
+function TabBar({
+  active,
+  onChange,
+}: {
+  active: TabId
+  onChange: (id: TabId) => void
+}) {
+  return (
+    <div
+      className="sticky top-0 z-20 overflow-x-auto"
+      style={{
+        background: "var(--bg-warm)",
+        borderBottom: "1px solid rgba(200,135,26,0.3)",
+        boxShadow: "0 2px 12px rgba(107,20,20,0.08)",
+      }}
+    >
+      <div className="flex gap-2 px-4 py-3 min-w-max">
+        {TABS.map((tab) => {
+          const isActive = tab.id === active
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => onChange(tab.id)}
+              className="font-display text-sm font-semibold px-4 py-2 rounded-full whitespace-nowrap"
+              style={
+                isActive
+                  ? { background: "var(--maroon)", color: "#ffffff" }
+                  : {
+                      background: "rgba(200,135,26,0.08)",
+                      color: "var(--maroon)",
+                      border: "1px solid rgba(200,135,26,0.3)",
+                    }
+              }
+            >
+              {tab.label}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+ 
+// ─────────────────────────────────────────────────────────────
+// Menu data
+// ─────────────────────────────────────────────────────────────
+ 
+const hotCupsItems: {
+  name: string
+  desc?: string
+  sizes: { label: string; price: string }[]
+  image?: string
+}[] = [
   {
-    name: "زعتر باللبنة",
-    desc: "زعتر فاخر وطازج مع لبنة كريمية غنية وزيت زيتون بكر ممتاز",
-    price: "12",
+    name: "شاي هام (تلقيمة)",
+    desc: "شاي خفيف ولطيف بمذاق رقيق الفاتح وطعمه الناعم",
+    sizes: [
+      { label: "وسط", price: "5" },
+      { label: "كبير", price: "6" },
+      { label: "زجاج", price: "8" },
+    ],
   },
   {
-    name: "لبنة",
-    desc: "لبنة طازجة كريمية على خبز طازج مخبوز يومياً",
-    price: "10",
+    name: "شاي بخار",
+    desc: "شاي قوي وغني بمذاق حاضر وتكوينه المركزة",
+    sizes: [
+      { label: "وسط", price: "5" },
+      { label: "كبير", price: "6" },
+      { label: "زجاج", price: "8" },
+    ],
   },
   {
-    name: "جبن سائل",
-    desc: "جبن سائل كريمي طبيعي على خبز طازج مخبوز يومياً",
-    price: "12",
+    name: "كرك",
+    desc: "مزيج فاخر من الشاي والتوابل، طعم غني وقوام كريمي",
+    sizes: [
+      { label: "وسط", price: "6" },
+      { label: "كبير", price: "7" },
+      { label: "زجاج", price: "9" },
+    ],
   },
   {
-    name: "بيض وجبن",
-    desc: "مزيج شهي من البيض الطازج والجبن السائل الكريمي",
-    price: "12",
+    name: "نعناع سادة",
+    desc: "أوراق نعناع طبيعية، يدعم الهضم وينعش الجسم",
+    sizes: [
+      { label: "وسط", price: "4" },
+      { label: "كبير", price: "5" },
+      { label: "زجاج", price: "7" },
+    ],
   },
   {
-    name: "نقانق وجبن",
-    desc: "نقانق طازجة مختارة مع جبن سائل كريمي على خبز مخبوز يومياً",
-    price: "14",
+    name: "حليب زنجبيل",
+    desc: "دفء طبيعي وفائدة كل يوم، مكونات طبيعية بدون إضافات صناعية",
+    sizes: [
+      { label: "وسط", price: "6" },
+      { label: "كبير", price: "7" },
+      { label: "زجاج", price: "9" },
+    ],
+    image: gingerMilkImg,
   },
   {
-    name: "جبن حلوم",
-    desc: "جبن حلوم طبيعي مشوي على خبز طازج مخبوز يومياً",
-    price: "14",
-  },
-  {
-    name: "تونة",
-    desc: "تونة طازجة مختارة مع توابل طبيعية على خبز مخبوز يومياً",
-    price: "14",
+    name: "شاي مغربي",
+    desc: "شاي بنكهة النعناع المغربي الأصيل",
+    sizes: [
+      { label: "وسط", price: "5" },
+      { label: "كبير", price: "6" },
+      { label: "زجاج", price: "8" },
+    ],
   },
 ]
-
-const coldDrinkItems = [
+ 
+const coffeeTodayItems: {
+  name: string
+  desc?: string
+  sizes: { label: string; price: string }[]
+}[] = [
   {
-    name: "كركديه",
+    name: "قهوة حارة",
+    desc: "محضرة من أجود حبوب القهوة المختارة بعناية",
+    sizes: [
+      { label: "وسط", price: "5" },
+      { label: "كبير", price: "7" },
+    ],
+  },
+  {
+    name: "قهوة باردة",
+    desc: "قهوة منعشة بمذاق غني وقوام كريمي",
+    sizes: [
+      { label: "وسط", price: "5" },
+      { label: "كبير", price: "7" },
+    ],
+  },
+]
+ 
+const coldDrinkItems: { name: string; desc?: string; price: string; image?: string }[] = [
+  {
+    name: "كركديه بارد",
     desc: "طبيعي 100%، بدون ألوان صناعية أو نكهات مضافة، غني بمضادات الأكسدة",
-    price: "12",
+    price: "14",
   },
   {
-    name: "موهيتو الكرز",
+    name: "آيس تي خوخ",
+    desc: "شاي مثلج منعش بنكهة الخوخ الطبيعية",
+    price: "14",
+  },
+  {
+    name: "موهيتو كرز",
     desc: "كرز أحمر طبيعي مع نعناع طازج وثلج — رشفة واحدة وكأنك في يوم صيفي مثالي",
-    price: "15",
+    price: "14",
   },
   {
-    name: "موهيتو التوت الأحمر",
+    name: "موهيتو توت أزرق",
+    desc: "توت أزرق طبيعي مع نعناع طازج وثلج، منعش بطعم مختلف",
+    price: "14",
+  },
+  {
+    name: "موهيتو توت أحمر",
     desc: "توت أحمر طبيعي مع نعناع طازج وثلج، منعش وغني بطعم لا يُنسى",
-    price: "15",
+    price: "14",
   },
   {
     name: "موهيتو باشن فروت",
     desc: "باشن فروت طبيعي مع نعناع طازج وثلج، انتعش بطعم مختلف",
-    price: "15",
+    price: "14",
   },
 ]
-
-const sweetsItems = [
+ 
+const sweetsItems: { name: string; desc?: string; price: string; image?: string }[] = [
   {
-    name: "سبوسة",
+    name: "بسبوسة هام",
     desc: "سميد فاخر بسمنة طبيعية ١٠٠٪، مغموسة بالقطر الخفيف ومزيّنة بالفستق الطازج",
-    price: "10",
+    price: "5",
   },
+  { name: "كوكيز", desc: "كوكيز طازج مقرمش من الخارج وطري من الداخل", price: "7" },
+  {
+    name: "تشيزكيك آيس كريم مانقو",
+    desc: "آيس كريمي مع قطع تشيزكيك وصوص مانقو لذيذ",
+    price: "9",
+  },
+  { name: "تمر", desc: "تمر فاخر مختار بعناية", price: "3" },
 ]
-
-const shabatiItems = [
-  {
-    name: "شباتي جبن وحلاوة طحينية",
-    desc: "شباتي طازج يومياً محضر على الطاوة، مع جبن طبيعي طازج وحلاوة طحينية فاخرة",
-    price: "15",
-  },
-
-  {
-    name: "شباتي بيض",
-    desc: "شباتي طازج محشو بالبيض، خفيف ولذيذ",
-    price: "6",
-    image: shahiZafranImg,
-  },
-  
+ 
+// Nuts, popcorn & snack trays — great for sharing or with a majlis tray
+const nutsItems: { name: string; desc?: string; price: string; image?: string }[] = [
+  { name: "فشار", desc: "فشار طازج مقرمش ولذيذ", price: "3" },
+  { name: "شابور", desc: "خبز محمص هش بنكهة الأصالة", price: "4" },
+  { name: "حب ضيافة", desc: "تشكيلة حبوب محمصة للضيافة", price: "3" },
+  { name: "حب دوار الشمس", desc: "حب دوار الشمس المحمص", price: "3" },
+  { name: "مكسرات ملكي", desc: "تشكيلة مكسرات ملكية فاخرة", price: "5" },
+  { name: "مكسرات تركي", desc: "تشكيلة مكسرات تركية مشكلة", price: "4" },
 ]
-
-const hotTeaItems = [
-  {
-    name: "شاي بخار",
-    desc: "شاي قوي وغني بمذاق حاضر وتكوينه المركزة",
-    price: "8",
-  },
-  {
-    name: "شاي تلقيمة",
-    desc: "شاي خفيف ولطيف بمذاق رقيق الفاتح وطعمه الناعم",
-    price: "8",
-  },
-  {
-    name: "شاي بالحليب",
-    desc: "أوراق شاي مختارة بعناية مع حليب طازج كامل الدسم",
-    price: "10",
-  },
-  {
-    name: "شاي كرك",
-    desc: "مزيج فاخر من الشاي والتوابل، طعم غني وقوام كريمي",
-    price: "12",
-  },
-  {
-    name: "شاي نعناع",
-    desc: "أوراق نعناع طبيعية، يدعم الهضم وينعش الجسم",
-    price: "8",
-  },
-  {
-    name: "شاي طبيعي",
-    desc: "أجود أنواع الشاي الطبيعي، طعم غني ومنعش",
-    price: "10",
-  },
+ 
+const shabatiItems: { name: string; desc?: string; price: string; image?: string }[] = [
+  { name: "بيض", desc: "شباتي طازج محشو بالبيض، خفيف ولذيذ", price: "6" },
+  { name: "شكشوكة", desc: "شكشوكة طازجة بنكهة غنية", price: "6" },
+  { name: "جبن", desc: "جبن طبيعي طازج على شباتي محضر على الطاوة", price: "5" },
+  { name: "جبن وطحينية", desc: "جبن طبيعي مع حلاوة طحينية فاخرة", price: "6" },
+  { name: "جبن وعسل", desc: "جبن طبيعي مع عسل نقي", price: "6" },
+  { name: "جبن وبطاطس عمان", desc: "جبن طبيعي مع بطاطس عمان المقرمشة", price: "7" },
+  { name: "تونة", desc: "تونة طازجة مختارة مع توابل طبيعية", price: "9", image: tunaImg },
+  { name: "حلومي", desc: "جبن حلوم طبيعي مشوي", price: "9", image: halloumiImg },
+  { name: "مقلقل دجاج (صباح)", desc: "دجاج مقلقل طازج، متاح صباحاً", price: "8" },
 ]
-
-const hotDrinkItems = [
-  {
-    name: "قهوة",
-    desc: "محضرة من أجود حبوب القهوة المختارة بعناية",
-    price: "12",
-  },
-  {
-    name: "قهوة سعودية أصيلة",
-    desc: "قهوة عربية أصيلة بطعم غني ورائحة زكية",
-    price: "15",
-  },
-  {
-    name: "زنجبيل",
-    desc: "زنجبيل طبيعي طازج يدعم المناعة ويعزز النشاط",
-    price: "10",
-  },
-  {
-    name: "حليب زنجبيل طبيعي",
-    desc: "دفء طبيعي وفائدة كل يوم، مكونات طبيعية بدون إضافات صناعية",
-    price: "12",
-  },
+ 
+const fatayerItems: { name: string; desc?: string; price: string; image?: string }[] = [
+  { name: "فطيرة بيض بالجبن", desc: "بيض طازج مع جبن كريمي على عجينة مخبوزة يومياً", price: "8", image: eggCheeseImg },
+  { name: "فطيرة جبن سائل", desc: "جبن سائل كريمي طبيعي على خبز طازج مخبوز يومياً", price: "7", image: cheesePieImg },
+  { name: "فطيرة جبن مالح", desc: "جبن مالح أصيل على عجينة طازجة", price: "7" },
+  { name: "فطيرة لبنة وزعتر", desc: "لبنة طازجة كريمية مع زعتر فاخر", price: "7", image: labnaImg },
+  { name: "فطيرة زعتر وزيت", desc: "زعتر فاخر وطازج مع زيت زيتون بكر ممتاز", price: "7" },
+  { name: "فطيرة نقانق بالجبن", desc: "نقانق طازجة مختارة مع جبن سائل كريمي", price: "8", image: sausageCheeseImg },
+  { name: "فطيرة تونة", desc: "تونة طازجة مختارة مع توابل طبيعية", price: "9" },
+  { name: "فطيرة حلومي", desc: "جبن حلوم طبيعي مشوي على عجينة طازجة", price: "9" },
+  { name: "خلية نحل", desc: "عجينة طرية محشوة على شكل خلية نحل", price: "7" },
 ]
-
+ 
+// ─────────────────────────────────────────────────────────────
+// App
+// ─────────────────────────────────────────────────────────────
+ 
 export default function App() {
+  const [activeTab, setActiveTab] = useState<TabId>("hot-cups")
+ 
   return (
     <div
       className="min-h-screen w-full"
@@ -408,7 +583,7 @@ export default function App() {
         >
           <GeometricPattern opacity={0.18} />
         </div>
-
+ 
         {/* Logo */}
         <div className="relative z-10 mb-2">
           <img
@@ -418,7 +593,7 @@ export default function App() {
             style={{ width: 220, height: 160 }}
           />
         </div>
-
+ 
         {/* Tagline */}
         <p
           className="relative z-10 font-display text-base mt-1"
@@ -426,7 +601,7 @@ export default function App() {
         >
           نفهم مزاجك
         </p>
-
+ 
         {/* Divider ornament */}
         <div className="relative z-10 mt-6 flex items-center gap-2">
           <div
@@ -443,7 +618,7 @@ export default function App() {
           />
         </div>
       </section>
-
+ 
       {/* ── About strip ── */}
       <section
         className="px-6 py-5 text-center"
@@ -456,601 +631,577 @@ export default function App() {
           تجربة شاي فاخرة&nbsp;·&nbsp;مكونات طبيعية مختارة بعناية
         </p>
       </section>
-
+ 
+      {/* ── Tabs ── */}
+      <TabBar active={activeTab} onChange={setActiveTab} />
+ 
       {/* ── Menu Content ── */}
       <main className="mx-auto max-w-md px-5 py-8">
-        {/* HOT TEA */}
-        <CategoryHeader ar="الشاي الساخن" />
-
-        <ProductPhoto
-          src={teaImg}
-          alt="شاي بخار وتلقيمة"
-          caption="شاي طبيعي أصيل"
-        />
-
-        <div className="mb-2">
-          {hotTeaItems.slice(0, 2).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        <div
-          className="my-8 overflow-hidden rounded-2xl relative"
-          style={{ boxShadow: "0 4px 24px rgba(107,20,20,0.12)" }}
-        >
-          <img
-            src={milkTeaImg}
-            alt="شاي بالحليب"
-            className="w-full object-cover"
-            style={{ height: 220, objectPosition: "center 15%" }}
-          />
-          <div
-            className="absolute inset-0 flex items-end p-4"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(74,14,14,0.7) 0%, transparent 60%)",
-            }}
-          >
-            <p className="font-display text-lg font-bold text-white">
-              شاي بالحليب
-            </p>
-          </div>
-        </div>
-
-        <div className="mb-2">
-          {hotTeaItems.slice(2, 4).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        <div className="my-8 grid grid-cols-2 gap-3">
-          <div
-            className="overflow-hidden rounded-xl relative"
-            style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.1)" }}
-          >
-            <img
-              src={mintImg}
-              alt="شاي نعناع"
-              className="w-full object-cover"
-              style={{ height: 160, objectPosition: "center 20%" }}
+        {activeTab === "hot-cups" && (
+          <>
+            <CategoryHeader ar="مشروبات حارة (أكواب)" />
+ 
+            <ProductPhoto
+              src={teaImg}
+              alt="شاي هام"
+              caption="شاي طبيعي أصيل"
             />
-            <div
-              className="absolute bottom-0 left-0 right-0 p-2 text-center"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(74,14,14,0.75) 0%, transparent 100%)",
-              }}
-            >
-              <p className="font-display text-sm font-bold text-white">نعناع</p>
+ 
+            <div className="mb-2">
+              {hotCupsItems.slice(0, 2).map((item) => (
+                <SizePriceItem key={item.name} {...item} />
+              ))}
             </div>
-          </div>
-          <div
-            className="overflow-hidden rounded-xl relative"
-            style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.1)" }}
-          >
-            <img
-              src={naturalTeaImg}
-              alt="شاي طبيعي"
-              className="w-full object-cover"
-              style={{ height: 160, objectPosition: "center 20%" }}
+ 
+            <div
+              className="my-8 overflow-hidden rounded-2xl relative"
+              style={{ boxShadow: "0 4px 24px rgba(107,20,20,0.12)" }}
+            >
+              <img
+                src={karakImg}
+                alt="كرك"
+                className="w-full object-cover"
+                style={{ height: 220, objectPosition: "center 25%" }}
+              />
+              <div
+                className="absolute inset-0 flex items-end p-4"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(74,14,14,0.7) 0%, transparent 60%)",
+                }}
+              >
+                <p className="font-display text-lg font-bold text-white">
+                  شاي كرك فاخر
+                </p>
+              </div>
+            </div>
+ 
+            <div className="mb-2">
+              {hotCupsItems.slice(2, 4).map((item) => (
+                <SizePriceItem key={item.name} {...item} />
+              ))}
+            </div>
+ 
+            <div className="my-8 grid grid-cols-2 gap-3">
+              <div
+                className="overflow-hidden rounded-xl relative"
+                style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.1)" }}
+              >
+                <img
+                  src={mintImg}
+                  alt="نعناع"
+                  className="w-full object-cover"
+                  style={{ height: 160, objectPosition: "center 20%" }}
+                />
+                <div
+                  className="absolute bottom-0 left-0 right-0 p-2 text-center"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(74,14,14,0.75) 0%, transparent 100%)",
+                  }}
+                >
+                  <p className="font-display text-sm font-bold text-white">
+                    نعناع سادة
+                  </p>
+                </div>
+              </div>
+              <div
+                className="overflow-hidden rounded-xl relative"
+                style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.1)" }}
+              >
+                <img
+                  src={naturalTeaImg}
+                  alt="شاي مغربي"
+                  className="w-full object-cover"
+                  style={{ height: 160, objectPosition: "center 20%" }}
+                />
+                <div
+                  className="absolute bottom-0 left-0 right-0 p-2 text-center"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(74,14,14,0.75) 0%, transparent 100%)",
+                  }}
+                >
+                  <p className="font-display text-sm font-bold text-white">
+                    شاي مغربي
+                  </p>
+                </div>
+              </div>
+            </div>
+ 
+            <div className="mb-8">
+              {hotCupsItems.slice(4).map((item) => (
+                <SizePriceItem key={item.name} {...item} />
+              ))}
+            </div>
+ 
+            <div
+              className="mb-2 overflow-hidden rounded-2xl relative"
+              style={{ boxShadow: "0 4px 20px rgba(107,20,20,0.14)" }}
+            >
+              <img
+                src={gingerImg}
+                alt="دفء طبيعي"
+                className="w-full object-cover"
+                style={{ height: 200, objectPosition: "center 20%" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(74,14,14,0.78) 0%, transparent 55%)",
+                }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-5 py-4 text-center">
+                <p className="text-xs text-white opacity-85">
+                  استمتع بلحظة دافئة مليئة بالفائدة
+                </p>
+              </div>
+            </div>
+          </>
+        )}
+ 
+        {activeTab === "coffee-today" && (
+          <>
+            <CategoryHeader ar="قهوة اليوم" />
+ 
+            <ProductPhoto
+              src={coffeeImg}
+              alt="قهوة اليوم"
+              caption="قهوة بمذاق مختلف"
             />
-            <div
-              className="absolute bottom-0 left-0 right-0 p-2 text-center"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(74,14,14,0.75) 0%, transparent 100%)",
-              }}
-            >
-              <p className="font-display text-sm font-bold text-white">طبيعي</p>
+ 
+            <div className="mb-4">
+              {coffeeTodayItems.map((item) => (
+                <SizePriceItem key={item.name} {...item} />
+              ))}
             </div>
-          </div>
-        </div>
-
-        <div className="mb-8">
-          {hotTeaItems.slice(4).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        {/* KARAK FEATURE */}
-        <div
-          className="relative overflow-hidden rounded-2xl mb-8 p-5 flex flex-col justify-end"
-          style={{
-            minHeight: 300,
-            boxShadow: "0 6px 32px rgba(107,20,20,0.18)",
-          }}
-        >
-          <img
-            src={karakImg}
-            alt="شاي كرك فاخر"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ objectPosition: "center 25%" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(74,14,14,0.88) 0%, rgba(74,14,14,0.2) 55%, transparent 100%)",
-            }}
-          />
-          <div className="relative z-10 text-center">
-            <p className="font-display text-2xl font-bold text-white mb-1">
-              شاي كرك فاخر
-            </p>
-            <p className="text-sm text-white opacity-80 mb-3">
-              دفء كل فنجان... بطعم لا يُنسى
-            </p>
-            <OrnamentalDivider />
-          </div>
-        </div>
-
-        {/* HOT DRINKS */}
-        <CategoryHeader ar="المشروبات الساخنة" />
-
-        <ProductPhoto
-          src={coffeeImg}
-          alt="قهوة شاي هام"
-          caption="قهوة بمذاق مختلف"
-        />
-
-        <div className="mb-8">
-          {hotDrinkItems.slice(0, 1).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        {/* Saudi Coffee Feature */}
-        <div
-          className="relative overflow-hidden rounded-2xl mb-6"
-          style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}
-        >
-          <img
-            src={saudiCoffeeImg}
-            alt="قهوة سعودية أصيلة"
-            className="w-full object-cover"
-            style={{ height: 260, objectPosition: "center 30%" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(74,14,14,0.82) 0%, transparent 55%)",
-            }}
-          />
-          <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
-            <p className="font-display text-xl font-bold text-white mb-0.5">
-              قهوة سعودية أصيلة
-            </p>
-            <p className="text-xs text-white opacity-75">
-              اختيارك الأمثل لتجربة قهوة عربية فاخرة
-            </p>
-          </div>
-        </div>
-
-        <div className="mb-8">
-          {hotDrinkItems.slice(1, 2).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        {/* Ginger Feature */}
-        <div
-          className="relative overflow-hidden rounded-2xl mb-6"
-          style={{ boxShadow: "0 4px 20px rgba(107,20,20,0.14)" }}
-        >
-          <img
-            src={gingerImg}
-            alt="زنجبيل طبيعي"
-            className="w-full object-cover"
-            style={{ height: 220, objectPosition: "center 20%" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(74,14,14,0.78) 0%, transparent 55%)",
-            }}
-          />
-          <div className="absolute bottom-0 left-0 right-0 px-5 py-4 text-center">
-            <p className="font-display text-xl font-bold text-white mb-0.5">
-              زنجبيل
-            </p>
-            <p className="text-xs text-white opacity-75">
-              استمتع بلحظة دافئة مليئة بالفائدة
-            </p>
-          </div>
-        </div>
-
-        <div className="mb-10">
-          {hotDrinkItems.slice(2).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        {/* Ginger milk feature */}
-        <div
-          className="mb-10 overflow-hidden rounded-2xl relative"
-          style={{ boxShadow: "0 4px 20px rgba(107,20,20,0.12)" }}
-        >
-          <img
-            src={gingerMilkImg}
-            alt="حليب زنجبيل طبيعي"
-            className="w-full object-cover"
-            style={{ height: 230, objectPosition: "center 25%" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(74,14,14,0.78) 0%, transparent 55%)",
-            }}
-          />
-          <div className="absolute bottom-0 left-0 right-0 px-5 py-4 text-center">
-            <p className="font-display text-xl font-bold text-white mb-0.5">
-              حليب زنجبيل طبيعي
-            </p>
-            <p className="text-xs text-white opacity-75">
-              دفء طبيعي... فائدة كل يوم
-            </p>
-          </div>
-        </div>
-
-        {/* FATAYER */}
-        <CategoryHeader ar="الفطائر" />
-
-        <div
-          className="mb-8 overflow-hidden rounded-2xl relative"
-          style={{ boxShadow: "0 4px 24px rgba(107,20,20,0.14)" }}
-        >
-          <img
-            src={zaatarImg}
-            alt="زعتر باللبنة"
-            className="w-full object-cover"
-            style={{ height: 270, objectPosition: "center 30%" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(74,14,14,0.82) 0%, transparent 50%)",
-            }}
-          />
-          <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
-            <p className="font-display text-2xl font-bold text-white mb-1">
-              زعتر باللبنة
-            </p>
-            <p className="text-xs text-white opacity-75">
-              نكهة أصيلة... بطعم لا يُقاوم
-            </p>
-          </div>
-        </div>
-
-        <div className="mb-6">
-          {fatayerItems.slice(0, 3).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        {/* Food photo grid */}
-        <div className="my-6 grid grid-cols-2 gap-3">
-          <div
-            className="overflow-hidden rounded-xl relative"
-            style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.1)" }}
-          >
-            <img
-              src={eggCheeseImg}
-              alt="بيض وجبن"
-              className="w-full object-cover"
-              style={{ height: 160, objectPosition: "center 20%" }}
-            />
+ 
             <div
-              className="absolute bottom-0 left-0 right-0 p-2 text-center"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(74,14,14,0.75) 0%, transparent 100%)",
-              }}
+              className="mb-4 overflow-hidden rounded-xl relative"
+              style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.1)" }}
             >
-              <p className="font-display text-sm font-bold text-white">
-                بيض وجبن
-              </p>
+              <img
+                src={milkTeaImg}
+                alt="تشكيلة القهوة"
+                className="w-full object-cover"
+                style={{ height: 160, objectPosition: "center 20%" }}
+              />
+              <div
+                className="absolute bottom-0 left-0 right-0 p-2 text-center"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(74,14,14,0.7) 0%, transparent 100%)",
+                }}
+              >
+                <p className="font-display text-sm font-bold text-white">
+                  حارة أو باردة، وسط أو كبير
+                </p>
+              </div>
             </div>
-          </div>
-          <div
-            className="overflow-hidden rounded-xl relative"
-            style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.1)" }}
-          >
-            <img
-              src={sausageCheeseImg}
-              alt="نقانق وجبن"
-              className="w-full object-cover"
-              style={{ height: 160, objectPosition: "center 20%" }}
-            />
+          </>
+        )}
+ 
+        {activeTab === "cold-drinks" && (
+          <>
+            <CategoryHeader ar="مشروبات باردة" />
+ 
             <div
-              className="absolute bottom-0 left-0 right-0 p-2 text-center"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(74,14,14,0.75) 0%, transparent 100%)",
-              }}
+              className="relative overflow-hidden rounded-2xl mb-8"
+              style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}
             >
-              <p className="font-display text-sm font-bold text-white">
-                نقانق وجبن
-              </p>
+              <img
+                src={hibiscusImg}
+                alt="كركديه بارد"
+                className="w-full object-cover"
+                style={{ height: 280, objectPosition: "center 25%" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(74,14,14,0.82) 0%, transparent 50%)",
+                }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
+                <p className="font-display text-2xl font-bold text-white mb-1">
+                  كركديه بارد
+                </p>
+                <p className="text-xs text-white opacity-75">
+                  طبيعي ١٠٠٪ · غني بمضادات الأكسدة
+                </p>
+                <p
+                  className="font-display text-xl font-bold mt-2"
+                  style={{ color: "var(--gold-light)" }}
+                >
+                  ١٤ ر.س
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div className="mb-6">
-          {fatayerItems.slice(3, 5).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        {/* Halloumi & Tuna photos */}
-        <div className="my-6 grid grid-cols-2 gap-3">
-          <div
-            className="overflow-hidden rounded-xl relative"
-            style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.1)" }}
-          >
-            <img
-              src={halloumiImg}
-              alt="جبن حلوم"
-              className="w-full object-cover"
-              style={{ height: 160, objectPosition: "center 25%" }}
-            />
+ 
+            <div className="mb-6">
+              {coldDrinkItems.slice(0, 2).map((item) => (
+                <MenuItem key={item.name} {...item} />
+              ))}
+            </div>
+ 
             <div
-              className="absolute bottom-0 left-0 right-0 p-2 text-center"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(74,14,14,0.75) 0%, transparent 100%)",
-              }}
+              className="mb-2 overflow-hidden rounded-2xl relative"
+              style={{ boxShadow: "0 4px 24px rgba(107,20,20,0.16)" }}
             >
-              <p className="font-display text-sm font-bold text-white">
-                جبن حلوم
-              </p>
+              <img
+                src={mojitoCherryImg}
+                alt="موهيتو كرز"
+                className="w-full object-cover"
+                style={{ height: 280, objectPosition: "center 35%" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(74,14,14,0.84) 0%, transparent 45%)",
+                }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
+                <p className="font-display text-2xl font-bold text-white mb-1">
+                  موهيتو كرز
+                </p>
+                <p className="text-xs text-white opacity-75">انتعش بطعم مختلف</p>
+              </div>
             </div>
-          </div>
-          <div
-            className="overflow-hidden rounded-xl relative"
-            style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.1)" }}
-          >
-            <img
-              src={tunaImg}
-              alt="تونة"
-              className="w-full object-cover"
-              style={{ height: 160, objectPosition: "center 30%" }}
-            />
+ 
+            <div className="mb-6 grid grid-cols-2 gap-3 mt-3">
+              <div
+                className="overflow-hidden rounded-xl relative"
+                style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.12)" }}
+              >
+                <img
+                  src={mojitoRedBerryImg}
+                  alt="موهيتو توت أحمر"
+                  className="w-full object-cover"
+                  style={{ height: 180, objectPosition: "center 35%" }}
+                />
+                <div
+                  className="absolute bottom-0 left-0 right-0 p-2 text-center"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(74,14,14,0.8) 0%, transparent 100%)",
+                  }}
+                >
+                  <p className="font-display text-sm font-bold text-white leading-tight">
+                    موهيتو توت أحمر
+                  </p>
+                </div>
+              </div>
+              <div
+                className="overflow-hidden rounded-xl relative"
+                style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.12)" }}
+              >
+                <img
+                  src={mojitoPassionImg}
+                  alt="موهيتو باشن فروت"
+                  className="w-full object-cover"
+                  style={{ height: 180, objectPosition: "center 35%" }}
+                />
+                <div
+                  className="absolute bottom-0 left-0 right-0 p-2 text-center"
+                  style={{
+                    background:
+                      "linear-gradient(to top, rgba(74,14,14,0.8) 0%, transparent 100%)",
+                  }}
+                >
+                  <p className="font-display text-sm font-bold text-white leading-tight">
+                    موهيتو باشن فروت
+                  </p>
+                </div>
+              </div>
+            </div>
+ 
+            <div className="mb-10">
+              {coldDrinkItems.slice(2).map((item) => (
+                <MenuItem key={item.name} {...item} />
+              ))}
+            </div>
+          </>
+        )}
+ 
+        {activeTab === "sweets" && (
+          <>
+            <CategoryHeader ar="حلويات" />
+ 
             <div
-              className="absolute bottom-0 left-0 right-0 p-2 text-center"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(74,14,14,0.75) 0%, transparent 100%)",
-              }}
+              className="relative overflow-hidden rounded-2xl mb-6"
+              style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}
             >
-              <p className="font-display text-sm font-bold text-white">تونة</p>
+              <img
+                src={sabousaImg}
+                alt="بسبوسة هام"
+                className="w-full object-cover"
+                style={{ height: 280, objectPosition: "center 40%" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(74,14,14,0.82) 0%, transparent 50%)",
+                }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
+                <p className="font-display text-2xl font-bold text-white mb-1">
+                  بسبوسة هام
+                </p>
+                <p className="text-xs text-white opacity-75 mb-2">
+                  بداية يومك بطعم يذوب في قلبك
+                </p>
+                <p
+                  className="font-display text-lg font-bold"
+                  style={{ color: "var(--gold-light)" }}
+                >
+                  ٥ ر.س
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div className="mb-8">
-          {fatayerItems.slice(5).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        {/* Shabati feature */}
-        <div
-          className="relative overflow-hidden rounded-2xl mb-10"
-          style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}
-        >
-          <img
-            src={shabatiImg}
-            alt="شباتي جبن وحلاوة طحينية"
-            className="w-full object-cover"
-            style={{ height: 260, objectPosition: "center 30%" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(74,14,14,0.86) 0%, transparent 50%)",
-            }}
-          />
-          <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
-            <p className="font-display text-xl font-bold text-white mb-1">
-              شباتي جبن وحلاوة طحينية
-            </p>
-            <p className="text-xs text-white opacity-75 mb-2">
-              شباتي طازج يومياً مع جبن طبيعي وحلاوة طحينية فاخرة
-            </p>
+ 
+            <div className="mb-10">
+              {sweetsItems.slice(1).map((item) => (
+                <MenuItem key={item.name} {...item} />
+              ))}
+            </div>
+          </>
+        )}
+ 
+        {activeTab === "nuts" && (
+          <>
+            <CategoryHeader ar="المكسرات والفشار" />
+ 
             <p
-              className="font-display text-lg font-bold"
-              style={{ color: "var(--gold-light)" }}
+              className="text-xs text-center mb-6 leading-relaxed"
+              style={{ color: "var(--text-muted)" }}
             >
-              ١٥ ر.س
+              تشكيلة خفيفة تناسب جلستك... فشار طازج ومكسرات وحبوب محمصة
             </p>
-          </div>
-        </div>
-        {shabatiItems.map((item) => (
-          <MenuItem key={item.name} {...item} />
-        ))}
-
-        {/* COLD DRINKS */}
-        <CategoryHeader ar="المشروبات الباردة" />
-
-        <div
-          className="relative overflow-hidden rounded-2xl mb-8"
-          style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}
-        >
-          <img
-            src={hibiscusImg}
-            alt="كركديه بارد"
-            className="w-full object-cover"
-            style={{ height: 280, objectPosition: "center 25%" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(74,14,14,0.82) 0%, transparent 50%)",
-            }}
-          />
-          <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
-            <p className="font-display text-2xl font-bold text-white mb-1">
-              كركديه
-            </p>
-            <p className="text-xs text-white opacity-75">
-              طبيعي ١٠٠٪ · غني بمضادات الأكسدة
-            </p>
-            <p
-              className="font-display text-xl font-bold mt-2"
-              style={{ color: "var(--gold-light)" }}
-            >
-              ١٢ ر.س
-            </p>
-          </div>
-        </div>
-
-        <div className="mb-6">
-          {coldDrinkItems.slice(0, 1).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        {/* Mojito trio */}
-        <div
-          className="mb-2 overflow-hidden rounded-2xl relative"
-          style={{ boxShadow: "0 4px 24px rgba(107,20,20,0.16)" }}
-        >
-          <img
-            src={mojitoCherryImg}
-            alt="موهيتو الكرز"
-            className="w-full object-cover"
-            style={{ height: 300, objectPosition: "center 35%" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(74,14,14,0.84) 0%, transparent 45%)",
-            }}
-          />
-          <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
-            <p className="font-display text-2xl font-bold text-white mb-1">
-              موهيتو الكرز
-            </p>
-            <p className="text-xs text-white opacity-75">انتعش بطعم مختلف</p>
-          </div>
-        </div>
-
-        <div className="mb-6 grid grid-cols-2 gap-3 mt-3">
-          <div
-            className="overflow-hidden rounded-xl relative"
-            style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.12)" }}
-          >
-            <img
-              src={mojitoRedBerryImg}
-              alt="موهيتو التوت الأحمر"
-              className="w-full object-cover"
-              style={{ height: 180, objectPosition: "center 35%" }}
-            />
+ 
+            <div className="mb-10">
+              {nutsItems.map((item) => (
+                <MenuItem key={item.name} {...item} />
+              ))}
+            </div>
+          </>
+        )}
+ 
+        {activeTab === "shabati" && (
+          <>
+            <CategoryHeader ar="شباتي" />
+ 
             <div
-              className="absolute bottom-0 left-0 right-0 p-2 text-center"
+              className="relative overflow-hidden rounded-2xl mb-8"
+              style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}
+            >
+              <img
+                src={shabatiImg}
+                alt="شباتي طازج"
+                className="w-full object-cover"
+                style={{ height: 260, objectPosition: "center 30%" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(74,14,14,0.86) 0%, transparent 50%)",
+                }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
+                <p className="font-display text-xl font-bold text-white mb-1">
+                  شباتي طازج يومياً
+                </p>
+                <p className="text-xs text-white opacity-75">
+                  محضّر على الطاوة بمكونات طازجة كل يوم
+                </p>
+              </div>
+            </div>
+ 
+            <div className="mb-4">
+              {shabatiItems.map((item) => (
+                <MenuItem key={item.name} {...item} />
+              ))}
+            </div>
+ 
+            <p
+              className="text-xs text-center mb-10"
+              style={{ color: "var(--text-muted)" }}
+            >
+              * إضافة جبن بـ ١ ريال
+            </p>
+          </>
+        )}
+ 
+        {activeTab === "fatayer" && (
+          <>
+            <CategoryHeader ar="فطائر" />
+ 
+            <div
+              className="mb-8 overflow-hidden rounded-2xl relative"
+              style={{ boxShadow: "0 4px 24px rgba(107,20,20,0.14)" }}
+            >
+              <img
+                src={zaatarImg}
+                alt="فطيرة زعتر وزيت"
+                className="w-full object-cover"
+                style={{ height: 270, objectPosition: "center 30%" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(74,14,14,0.82) 0%, transparent 50%)",
+                }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
+                <p className="font-display text-2xl font-bold text-white mb-1">
+                  فطيرة زعتر وزيت
+                </p>
+                <p className="text-xs text-white opacity-75">
+                  نكهة أصيلة... بطعم لا يُقاوم
+                </p>
+              </div>
+            </div>
+ 
+            <div className="mb-10">
+              {fatayerItems.map((item) => (
+                <MenuItem key={item.name} {...item} />
+              ))}
+            </div>
+          </>
+        )}
+ 
+        {activeTab === "majlis" && (
+          <>
+            <CategoryHeader ar="مجلس شاي هام" />
+ 
+            {/* مجلس الشاي */}
+            <div
+              className="relative overflow-hidden rounded-2xl mb-4 p-6"
               style={{
-                background:
-                  "linear-gradient(to top, rgba(74,14,14,0.8) 0%, transparent 100%)",
+                background: "var(--maroon)",
+                boxShadow: "0 6px 32px rgba(107,20,20,0.25)",
               }}
             >
-              <p className="font-display text-sm font-bold text-white leading-tight">
-                موهيتو التوت الأحمر
-              </p>
+              <div className="absolute top-0 left-0 opacity-10 pointer-events-none">
+                <GeometricPattern opacity={1} />
+              </div>
+              <div className="relative z-10 text-center">
+                <p className="font-display text-xl font-bold text-white mb-1">
+                  مجلس الشاي
+                </p>
+                <p
+                  className="font-display text-3xl font-bold mb-4"
+                  style={{ color: "var(--gold-light)" }}
+                >
+                  ٢٩ ر.س
+                </p>
+ 
+                <div className="space-y-2 text-right">
+                  <div className="flex items-center gap-2">
+                    <DiamondIcon />
+                    <p className="text-sm text-white">
+                      إبريق شاهي (كرك أو نعناع)
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DiamondIcon />
+                    <p className="text-sm text-white">فشار طازج مقرمش ولذيذ</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DiamondIcon />
+                    <p className="text-sm text-white">شابورة بنكهة الأصالة</p>
+                  </div>
+                </div>
+ 
+                <div
+                  className="mt-4 rounded-xl px-4 py-3"
+                  style={{
+                    background: "rgba(200,135,26,0.15)",
+                    border: "1px solid rgba(200,135,26,0.4)",
+                  }}
+                >
+                  <p
+                    className="font-display text-sm font-bold mb-0.5"
+                    style={{ color: "var(--gold-light)" }}
+                  >
+                    مجاناً
+                  </p>
+                  <p className="text-xs text-white opacity-90">
+                    اختر نوع واحد من المكسرات مجاناً
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div
-            className="overflow-hidden rounded-xl relative"
-            style={{ boxShadow: "0 2px 12px rgba(107,20,20,0.12)" }}
-          >
-            <img
-              src={mojitoPassionImg}
-              alt="موهيتو باشن فروت"
-              className="w-full object-cover"
-              style={{ height: 180, objectPosition: "center 35%" }}
-            />
+ 
+            {/* مجلس القهوة */}
             <div
-              className="absolute bottom-0 left-0 right-0 p-2 text-center"
+              className="relative overflow-hidden rounded-2xl mb-8"
+              style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}
+            >
+              <img
+                src={saudiCoffeeImg}
+                alt="مجلس القهوة"
+                className="w-full object-cover"
+                style={{ height: 240, objectPosition: "center 30%" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(74,14,14,0.88) 0%, transparent 55%)",
+                }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
+                <p className="font-display text-xl font-bold text-white mb-1">
+                  مجلس القهوة
+                </p>
+                <p
+                  className="font-display text-2xl font-bold mb-3"
+                  style={{ color: "var(--gold-light)" }}
+                >
+                  ٢٩ ر.س
+                </p>
+ 
+                <div className="space-y-1.5 text-right max-w-[260px] mx-auto">
+                  <div className="flex items-center gap-2">
+                    <DiamondIcon />
+                    <p className="text-sm text-white">قهوة سعودية أصيلة</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DiamondIcon />
+                    <p className="text-sm text-white">تمر فاخر</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DiamondIcon />
+                    <p className="text-sm text-white">طحينة ناعمة ولذيذة</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DiamondIcon />
+                    <p className="text-sm text-white">بسبوسة طرية وشهية</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+ 
+            <div
+              className="rounded-xl px-4 py-3 mb-10 text-center"
               style={{
-                background:
-                  "linear-gradient(to top, rgba(74,14,14,0.8) 0%, transparent 100%)",
+                background: "rgba(200, 135, 26, 0.08)",
+                border: "1px solid rgba(200, 135, 26, 0.25)",
               }}
             >
-              <p className="font-display text-sm font-bold text-white leading-tight">
-                موهيتو باشن فروت
+              <p className="text-xs" style={{ color: "var(--text-muted)" }}>
+                عرض مميز لضيافتك أو مناسباتك
               </p>
             </div>
-          </div>
-        </div>
-
-        <div className="mb-10">
-          {coldDrinkItems.slice(1).map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        {/* SWEETS */}
-        <CategoryHeader ar="الحلويات" />
-
-        <div
-          className="relative overflow-hidden rounded-2xl mb-6"
-          style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}
-        >
-          <img
-            src={sabousaImg}
-            alt="سبوسة"
-            className="w-full object-cover"
-            style={{ height: 280, objectPosition: "center 40%" }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(74,14,14,0.82) 0%, transparent 50%)",
-            }}
-          />
-          <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
-            <p className="font-display text-2xl font-bold text-white mb-1">
-              سبوسة
-            </p>
-            <p className="text-xs text-white opacity-75 mb-2">
-              بداية يومك بطعم يذوب في قلبك
-            </p>
-            <p
-              className="font-display text-lg font-bold"
-              style={{ color: "var(--gold-light)" }}
-            >
-              ١٠ ر.س
-            </p>
-          </div>
-        </div>
-
-        <div className="mb-10">
-          {sweetsItems.map((item) => (
-            <MenuItem key={item.name} {...item} />
-          ))}
-        </div>
-
-        {/* Note about prices */}
-        <div
-          className="rounded-xl px-4 py-3 mb-10 text-center"
-          style={{
-            background: "rgba(200, 135, 26, 0.08)",
-            border: "1px solid rgba(200, 135, 26, 0.25)",
-          }}
-        >
-          <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            
-          </p>
-        </div>
+          </>
+        )}
       </main>
-
+ 
       {/* ── Footer ── */}
       <footer
         className="relative overflow-hidden px-6 py-10 text-center"
@@ -1066,7 +1217,7 @@ export default function App() {
         >
           <GeometricPattern opacity={1} />
         </div>
-
+ 
         <div className="relative z-10">
           {/* Logo repeat */}
           <img
@@ -1075,9 +1226,9 @@ export default function App() {
             className="mx-auto object-contain mb-4 opacity-90"
             style={{ width: 140, height: 100, filter: "brightness(5)" }}
           />
-
+ 
           <OrnamentalDivider />
-
+ 
           <div className="mt-5 space-y-2">
             <div className="flex items-center justify-center gap-2">
               <svg
@@ -1122,7 +1273,7 @@ export default function App() {
               </p>
             </div>
           </div>
-
+ 
           {/* Social icons row */}
           <div className="flex justify-center gap-5 mt-6">
             {["instagram", "twitter", "snapchat"].map((platform) => (
@@ -1173,7 +1324,7 @@ export default function App() {
               </div>
             ))}
           </div>
-
+ 
           {/* Closing ornament */}
           <div className="mt-7 flex justify-center">
             <div className="flex items-center gap-2">
@@ -1199,7 +1350,7 @@ export default function App() {
               />
             </div>
           </div>
-
+ 
           <p
             className="mt-4 text-xs"
             style={{ color: "rgba(255,255,255,0.4)" }}
@@ -1211,3 +1362,5 @@ export default function App() {
     </div>
   )
 }
+ 
+
