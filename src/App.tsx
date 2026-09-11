@@ -639,7 +639,7 @@ export default function App() {
       <main className="mx-auto max-w-md px-5 py-8">
         {activeTab === "hot-cups" && (
           <>
-            <CategoryHeader ar="مشروبات حارة (أكواب)" />
+            <CategoryHeader ar="مشروبات حارة" />
  
             <ProductPhoto
               src={teaImg}
