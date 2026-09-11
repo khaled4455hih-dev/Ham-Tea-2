@@ -325,7 +325,7 @@ function ProductPhoto({
 // ─────────────────────────────────────────────────────────────
  
 const TABS = [
-  { id: "hot-cups", label: "مشروبات حارة (أكواب)" },
+  { id: "hot-cups", label: "مشروبات حارة" },
   { id: "coffee-today", label: "قهوة اليوم" },
   { id: "cold-drinks", label: "مشروبات باردة" },
   { id: "sweets", label: "حلويات" },
