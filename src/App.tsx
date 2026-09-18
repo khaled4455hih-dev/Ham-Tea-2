@@ -1,25 +1,68 @@
+SX
 import { useState, useEffect } from "react"
-import logoImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.28.39.jpeg"
-import zaatarImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__1_.jpeg"
-import sausageCheeseImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__2_.jpeg"
-import eggCheeseImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__3_.jpeg"
-import halloumiImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__6_.jpeg"
-import tunaImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__7_.jpeg"
-import hibiscusImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__9_.jpeg"
-import gingerMilkImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__10_.jpeg"
-import labnaImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__14_.jpeg"
-import cheesePieImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.55__15_.jpeg"
-import sabousaImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.30.28__1_.jpeg"
-import mojitoCherryImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.30.28__2_.jpeg"
-import mojitoRedBerryImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.30.28__3_.jpeg"
-import mojitoPassionImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.30.28__4_.jpeg"
-import shabatiImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.30.28__5_.jpeg"
-import teaImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.54__2_.jpeg"
-import gingerImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.54__4_.jpeg"
-import mintImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.54__5_.jpeg"
-import karakImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.54__7_.jpeg"
-import naturalTeaImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.54__8_.jpeg"
-import coffeeImg from "@/imports/WhatsApp_Image__1448-03-26_at_17.29.54__1_.jpeg"
+ 
+// ── Logo (transparent, no white background) ──
+import logoImg from "@/assets/logo_transparent.png"
+ 
+// ── Section banners (large, one per section — cropped clean photos) ──
+import bannerHotTea from "@/assets/menu/banner_hot_tea.jpg"
+import bannerCoffee from "@/assets/menu/banner_coffee.jpg"
+import bannerColdHibiscus from "@/assets/menu/banner_cold_hibiscus.jpg"
+import bannerShabati from "@/assets/menu/banner_shabati.jpg"
+import bannerFatayer from "@/assets/menu/banner_fatayer.jpg"
+import bannerSweetsCookie from "@/assets/menu/banner_sweets_cookie.jpg"
+ 
+// ── مجلس شاي هام ──
+import majlisShai from "@/assets/menu/majlis_shai.jpg"
+import majlisGahwa from "@/assets/menu/majlis_gahwa.jpg"
+ 
+// ── المشروبات الحارة (أكواب) ──
+import talqeemaImg from "@/assets/menu/talqeema.jpg"
+import bukharImg from "@/assets/menu/bukhar.jpg"
+import karakImg from "@/assets/menu/karak.jpg"
+import maghribiImg from "@/assets/menu/maghribi.jpg"
+import gingerMilkImg from "@/assets/menu/ginger_milk.jpg"
+import naanaaImg from "@/assets/menu/naanaa.jpg"
+ 
+// ── قهوة اليوم ──
+import coffeeHotImg from "@/assets/menu/coffee_hot.jpg"
+import coffeeColdImg from "@/assets/menu/coffee_cold.jpg"
+ 
+// ── المشروبات الباردة ──
+import mojitoPassionImg from "@/assets/menu/mojito_passionfruit.jpg"
+import mojitoRedBerryImg from "@/assets/menu/mojito_redberry.jpg"
+import mojitoCherryImg from "@/assets/menu/mojito_cherry.jpg"
+import hibiscusCupImg from "@/assets/menu/hibiscus_cup.jpg"
+import icedPeachTeaImg from "@/assets/menu/iced_peach_tea.jpg"
+import mojitoBlueberryImg from "@/assets/menu/mojito_blueberry.jpg"
+ 
+// ── شباتي ──
+import shabatiCheeseHoneyImg from "@/assets/menu/shabati_cheese_honey.jpg"
+import shabatiTunaImg from "@/assets/menu/shabati_tuna.jpg"
+import shabatiEggImg from "@/assets/menu/shabati_egg.jpg"
+import shabatiCheeseTahiniImg from "@/assets/menu/shabati_cheese_tahini.jpg"
+import shabatiEggShakshukaImg from "@/assets/menu/shabati_egg_shakshuka.jpg"
+import shabatiCheeseHalloumiImg from "@/assets/menu/shabati_cheese_halloumi.jpg"
+import shabatiCheesePotatoImg from "@/assets/menu/shabati_cheese_potato.jpg"
+import shabatiCheeseLiquidImg from "@/assets/menu/shabati_cheese_liquid.jpg"
+ 
+// ── الفطائر ──
+import fatayerLabnaZaatarImg from "@/assets/menu/fatayer_labna_zaatar.jpg"
+import fatayerSausageCheeseImg from "@/assets/menu/fatayer_sausage_cheese.jpg"
+import fatayerEggCheeseImg from "@/assets/menu/fatayer_egg_cheese.jpg"
+import fatayerHalloumiImg from "@/assets/menu/fatayer_halloumi.jpg"
+import fatayerTunaImg from "@/assets/menu/fatayer_tuna.jpg"
+import fatayerCheeseLiquidImg from "@/assets/menu/fatayer_cheese_liquid.jpg"
+import fatayerCheeseSaltyImg from "@/assets/menu/fatayer_cheese_salty.jpg"
+import fatayerHoneycombImg from "@/assets/menu/fatayer_honeycomb.jpg"
+ 
+// ── الحلويات ──
+import sabousaImg from "@/assets/menu/sabousa.jpg"
+import cookiesImg from "@/assets/menu/cookies.jpg"
+import shabouraImg from "@/assets/menu/shaboura.jpg"
+import cheesecakeIcecreamImg from "@/assets/menu/cheesecake_icecream.jpg"
+import nutsRoyalImg from "@/assets/menu/nuts_royal.jpg"
+import nutsTurkishImg from "@/assets/menu/nuts_turkish.jpg"
  
 // ─────────────────────────────────────────────────────────────
 // Decorative helpers (unchanged look & feel from the original design)
@@ -145,11 +188,29 @@ function SectionBanner({
   )
 }
  
-// Text-only row (used for items with no dedicated photo) — single price
-function MenuItem({ name, desc, price }: { name: string; desc?: string; price: string }) {
+// Small square photo (or none) + name/desc + single price — used for every menu row
+function SmallItemRow({
+  name,
+  desc,
+  price,
+  image,
+}: {
+  name: string
+  desc?: string
+  price: string
+  image?: string
+}) {
   return (
-    <div className="py-4 flex items-start justify-between gap-4" style={{ borderBottom: "1px solid var(--divider)" }}>
-      <div className="flex-1">
+    <div className="py-3.5 flex items-center gap-3" style={{ borderBottom: "1px solid var(--divider)" }}>
+      {image && (
+        <img
+          src={image}
+          alt={name}
+          className="rounded-xl object-cover shrink-0"
+          style={{ width: 64, height: 64, boxShadow: "0 2px 8px rgba(107,20,20,0.15)" }}
+        />
+      )}
+      <div className="flex-1 min-w-0">
         <p className="font-display text-base font-semibold leading-snug" style={{ color: "var(--maroon)" }}>
           {name}
         </p>
@@ -172,18 +233,28 @@ function MenuItem({ name, desc, price }: { name: string; desc?: string; price: s
   )
 }
  
-// Text-only row — multiple sizes (وسط/كبير/زجاج)
-function SizePriceItem({
+// Small square photo (or none) + name/desc + multiple sizes (وسط/كبير/زجاج)
+function SmallItemRowSizes({
   name,
   desc,
   sizes,
+  image,
 }: {
   name: string
   desc?: string
   sizes: { label: string; price: string }[]
+  image?: string
 }) {
   return (
-    <div className="py-4 flex items-start justify-between gap-3" style={{ borderBottom: "1px solid var(--divider)" }}>
+    <div className="py-3.5 flex items-center gap-3" style={{ borderBottom: "1px solid var(--divider)" }}>
+      {image && (
+        <img
+          src={image}
+          alt={name}
+          className="rounded-xl object-cover shrink-0"
+          style={{ width: 64, height: 64, boxShadow: "0 2px 8px rgba(107,20,20,0.15)" }}
+        />
+      )}
       <div className="flex-1 min-w-0">
         <p className="font-display text-base font-semibold leading-snug" style={{ color: "var(--maroon)" }}>
           {name}
@@ -209,78 +280,6 @@ function SizePriceItem({
             </span>
           </div>
         ))}
-      </div>
-    </div>
-  )
-}
- 
-// Full card used for every item that HAS a dedicated photo:
-// clear, centered image on top → name + description → price/sizes below
-function ProductCard({
-  name,
-  desc,
-  price,
-  sizes,
-  image,
-}: {
-  name: string
-  desc?: string
-  price?: string
-  sizes?: { label: string; price: string }[]
-  image: string
-}) {
-  return (
-    <div className="mb-6 overflow-hidden rounded-2xl" style={{ boxShadow: "0 4px 20px rgba(107,20,20,0.14)" }}>
-      <img
-        src={image}
-        alt={name}
-        className="w-full object-cover"
-        style={{ height: 210, objectPosition: "center" }}
-      />
-      <div className="p-4" style={{ background: "var(--bg-warm)" }}>
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex-1">
-            <p className="font-display text-base font-semibold leading-snug" style={{ color: "var(--maroon)" }}>
-              {name}
-            </p>
-            {desc && (
-              <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                {desc}
-              </p>
-            )}
-          </div>
-          <div className="shrink-0 text-left">
-            {price && (
-              <>
-                <span className="font-display text-base font-bold tabular-nums" style={{ color: "var(--gold)" }}>
-                  {price}
-                </span>
-                <span className="text-xs mr-0.5" style={{ color: "var(--text-muted)" }}>
-                  {" "}
-                  ر.س
-                </span>
-              </>
-            )}
-            {sizes && (
-              <div className="flex gap-1.5">
-                {sizes.map((s) => (
-                  <div
-                    key={s.label}
-                    className="flex flex-col items-center justify-center rounded-lg px-2 py-1"
-                    style={{ background: "rgba(200,135,26,0.08)", border: "1px solid rgba(200,135,26,0.25)", minWidth: 42 }}
-                  >
-                    <span className="text-[9px] leading-none mb-0.5" style={{ color: "var(--text-muted)" }}>
-                      {s.label}
-                    </span>
-                    <span className="font-display text-sm font-bold leading-none tabular-nums" style={{ color: "var(--gold)" }}>
-                      {s.price}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
       </div>
     </div>
   )
@@ -355,6 +354,7 @@ const hotCupsItems: {
       { label: "كبير", price: "6" },
       { label: "زجاج", price: "8" },
     ],
+    image: talqeemaImg,
   },
   {
     name: "شاي بخار",
@@ -364,6 +364,7 @@ const hotCupsItems: {
       { label: "كبير", price: "6" },
       { label: "زجاج", price: "8" },
     ],
+    image: bukharImg,
   },
   {
     name: "كرك",
@@ -383,7 +384,7 @@ const hotCupsItems: {
       { label: "كبير", price: "5" },
       { label: "زجاج", price: "7" },
     ],
-    image: mintImg,
+    image: naanaaImg,
   },
   {
     name: "حليب زنجبيل",
@@ -403,11 +404,11 @@ const hotCupsItems: {
       { label: "كبير", price: "6" },
       { label: "زجاج", price: "8" },
     ],
-    image: naturalTeaImg,
+    image: maghribiImg,
   },
 ]
  
-const coffeeTodayItems: { name: string; desc?: string; sizes: { label: string; price: string }[] }[] = [
+const coffeeTodayItems: { name: string; desc?: string; sizes: { label: string; price: string }[]; image?: string }[] = [
   {
     name: "قهوة حارة",
     desc: "محضرة من أجود حبوب القهوة المختارة بعناية",
@@ -415,6 +416,7 @@ const coffeeTodayItems: { name: string; desc?: string; sizes: { label: string; p
       { label: "وسط", price: "5" },
       { label: "كبير", price: "7" },
     ],
+    image: coffeeHotImg,
   },
   {
     name: "قهوة باردة",
@@ -423,6 +425,7 @@ const coffeeTodayItems: { name: string; desc?: string; sizes: { label: string; p
       { label: "وسط", price: "5" },
       { label: "كبير", price: "7" },
     ],
+    image: coffeeColdImg,
   },
 ]
  
@@ -431,16 +434,16 @@ const coldDrinkItems: { name: string; desc?: string; price: string; image?: stri
     name: "كركديه بارد",
     desc: "طبيعي 100%، بدون ألوان صناعية أو نكهات مضافة، غني بمضادات الأكسدة",
     price: "14",
-    image: hibiscusImg,
+    image: hibiscusCupImg,
   },
-  { name: "آيس تي خوخ", desc: "شاي مثلج منعش بنكهة الخوخ الطبيعية", price: "14" },
+  { name: "آيس تي خوخ", desc: "شاي مثلج منعش بنكهة الخوخ الطبيعية", price: "14", image: icedPeachTeaImg },
   {
     name: "موهيتو كرز",
     desc: "كرز أحمر طبيعي مع نعناع طازج وثلج — رشفة واحدة وكأنك في يوم صيفي مثالي",
     price: "14",
     image: mojitoCherryImg,
   },
-  { name: "موهيتو توت أزرق", desc: "توت أزرق طبيعي مع نعناع طازج وثلج، منعش بطعم مختلف", price: "14" },
+  { name: "موهيتو توت أزرق", desc: "توت أزرق طبيعي مع نعناع طازج وثلج، منعش بطعم مختلف", price: "14", image: mojitoBlueberryImg },
   {
     name: "موهيتو توت أحمر",
     desc: "توت أحمر طبيعي مع نعناع طازج وثلج، منعش وغني بطعم لا يُنسى",
@@ -463,56 +466,51 @@ const sweetsItems: { name: string; desc?: string; price: string; image?: string 
     price: "5",
     image: sabousaImg,
   },
-  { name: "كوكيز", desc: "كوكيز طازج مقرمش من الخارج وطري من الداخل", price: "7" },
-  { name: "تشيزكيك آيس كريم مانجو", desc: "آيس كريمي مع قطع تشيزكيك وصوص مانجو لذيذ", price: "9" },
+  { name: "كوكيز", desc: "كوكيز طازج مقرمش من الخارج وطري من الداخل", price: "7", image: cookiesImg },
+  { name: "تشيزكيك آيس كريم مانجو", desc: "آيس كريمي مع قطع تشيزكيك وصوص مانجو لذيذ", price: "9", image: cheesecakeIcecreamImg },
   { name: "تمر", desc: "تمر فاخر مختار بعناية", price: "3" },
   { name: "فشار", desc: "فشار طازج مقرمش ولذيذ", price: "3" },
-  { name: "شابور", desc: "خبز محمص هش بنكهة الأصالة", price: "4" },
+  { name: "شابور", desc: "خبز محمص هش بنكهة الأصالة", price: "4", image: shabouraImg },
   { name: "حب ضيافة", desc: "تشكيلة حبوب محمصة للضيافة", price: "3" },
   { name: "حب دوار الشمس", desc: "حب دوار الشمس المحمص", price: "3" },
-  { name: "مكسرات ملكي", desc: "تشكيلة مكسرات ملكية فاخرة", price: "5" },
-  { name: "مكسرات تركي", desc: "تشكيلة مكسرات تركية مشكلة", price: "4" },
+  { name: "مكسرات ملكي", desc: "تشكيلة مكسرات ملكية فاخرة", price: "5", image: nutsRoyalImg },
+  { name: "مكسرات تركي", desc: "تشكيلة مكسرات تركية مشكلة", price: "4", image: nutsTurkishImg },
 ]
  
 const shabatiItems: { name: string; desc?: string; price: string; image?: string }[] = [
-  { name: "بيض", desc: "شباتي طازج محشو بالبيض، خفيف ولذيذ", price: "6" },
-  { name: "شكشوكة", desc: "شكشوكة طازجة بنكهة غنية", price: "6" },
-  { name: "جبن", desc: "جبن طبيعي طازج على شباتي محضر على الطاوة", price: "5" },
-  { name: "جبن وطحينية", desc: "جبن طبيعي مع حلاوة طحينية فاخرة", price: "6" },
-  { name: "جبن وعسل", desc: "جبن طبيعي مع عسل نقي", price: "6" },
-  { name: "جبن وبطاطس عمان", desc: "جبن طبيعي مع بطاطس عمان المقرمشة", price: "7" },
-  { name: "تونة", desc: "تونة طازجة مختارة مع توابل طبيعية", price: "9", image: tunaImg },
-  { name: "حلومي", desc: "جبن حلوم طبيعي مشوي", price: "9", image: halloumiImg },
+  { name: "بيض", desc: "شباتي طازج محشو بالبيض، خفيف ولذيذ", price: "6", image: shabatiEggImg },
+  { name: "شكشوكة", desc: "شكشوكة طازجة بنكهة غنية", price: "6", image: shabatiEggShakshukaImg },
+  { name: "جبن", desc: "جبن طبيعي طازج على شباتي محضر على الطاوة", price: "5", image: shabatiCheeseLiquidImg },
+  { name: "جبن وطحينية", desc: "جبن طبيعي مع حلاوة طحينية فاخرة", price: "6", image: shabatiCheeseTahiniImg },
+  { name: "جبن وعسل", desc: "جبن طبيعي مع عسل نقي", price: "6", image: shabatiCheeseHoneyImg },
+  { name: "جبن وبطاطس عمان", desc: "جبن طبيعي مع بطاطس عمان المقرمشة", price: "7", image: shabatiCheesePotatoImg },
+  { name: "تونة", desc: "تونة طازجة مختارة مع توابل طبيعية", price: "9", image: shabatiTunaImg },
+  { name: "حلومي", desc: "جبن حلوم طبيعي مشوي", price: "9", image: shabatiCheeseHalloumiImg },
   { name: "مقلقل دجاج (صباح)", desc: "دجاج مقلقل طازج، متاح صباحاً", price: "8" },
 ]
  
 const fatayerItems: { name: string; desc?: string; price: string; image?: string }[] = [
-  { name: "فطيرة بيض بالجبن", desc: "بيض طازج مع جبن كريمي على عجينة مخبوزة يومياً", price: "8", image: eggCheeseImg },
-  { name: "فطيرة جبن سائل", desc: "جبن سائل كريمي طبيعي على خبز طازج مخبوز يومياً", price: "7", image: cheesePieImg },
-  { name: "فطيرة جبن مالح", desc: "جبن مالح أصيل على عجينة طازجة", price: "7" },
-  { name: "فطيرة لبنة وزعتر", desc: "لبنة طازجة كريمية مع زعتر فاخر", price: "7", image: labnaImg },
+  { name: "فطيرة بيض بالجبن", desc: "بيض طازج مع جبن كريمي على عجينة مخبوزة يومياً", price: "8", image: fatayerEggCheeseImg },
+  { name: "فطيرة جبن سائل", desc: "جبن سائل كريمي طبيعي على خبز طازج مخبوز يومياً", price: "7", image: fatayerCheeseLiquidImg },
+  { name: "فطيرة جبن مالح", desc: "جبن مالح أصيل على عجينة طازجة", price: "7", image: fatayerCheeseSaltyImg },
+  { name: "فطيرة لبنة وزعتر", desc: "لبنة طازجة كريمية مع زعتر فاخر", price: "7", image: fatayerLabnaZaatarImg },
   { name: "فطيرة زعتر وزيت", desc: "زعتر فاخر وطازج مع زيت زيتون بكر ممتاز", price: "7" },
-  { name: "فطيرة نقانق بالجبن", desc: "نقانق طازجة مختارة مع جبن سائل كريمي", price: "8", image: sausageCheeseImg },
-  { name: "فطيرة تونة", desc: "تونة طازجة مختارة مع توابل طبيعية", price: "9" },
-  { name: "فطيرة حلومي", desc: "جبن حلوم طبيعي مشوي على عجينة طازجة", price: "9" },
-  { name: "خلية نحل", desc: "عجينة طرية محشوة على شكل خلية نحل", price: "7" },
+  { name: "فطيرة نقانق بالجبن", desc: "نقانق طازجة مختارة مع جبن سائل كريمي", price: "8", image: fatayerSausageCheeseImg },
+  { name: "فطيرة تونة", desc: "تونة طازجة مختارة مع توابل طبيعية", price: "9", image: fatayerTunaImg },
+  { name: "فطيرة حلومي", desc: "جبن حلوم طبيعي مشوي على عجينة طازجة", price: "9", image: fatayerHalloumiImg },
+  { name: "خلية نحل", desc: "عجينة طرية محشوة على شكل خلية نحل", price: "7", image: fatayerHoneycombImg },
 ]
  
 // ─────────────────────────────────────────────────────────────
-// Small helper to render a mixed list: ProductCard for items with a photo,
-// MenuItem/SizePriceItem (text row) for items without one.
+// List renderers — every row can carry a small photo now
 // ─────────────────────────────────────────────────────────────
  
 function ItemList({ items }: { items: { name: string; desc?: string; price: string; image?: string }[] }) {
   return (
     <div className="mb-8">
-      {items.map((item) =>
-        item.image ? (
-          <ProductCard key={item.name} name={item.name} desc={item.desc} price={item.price} image={item.image} />
-        ) : (
-          <MenuItem key={item.name} name={item.name} desc={item.desc} price={item.price} />
-        )
-      )}
+      {items.map((item) => (
+        <SmallItemRow key={item.name} name={item.name} desc={item.desc} price={item.price} image={item.image} />
+      ))}
     </div>
   )
 }
@@ -524,20 +522,16 @@ function SizeItemList({
 }) {
   return (
     <div className="mb-8">
-      {items.map((item) =>
-        item.image ? (
-          <ProductCard key={item.name} name={item.name} desc={item.desc} sizes={item.sizes} image={item.image} />
-        ) : (
-          <SizePriceItem key={item.name} name={item.name} desc={item.desc} sizes={item.sizes} />
-        )
-      )}
+      {items.map((item) => (
+        <SmallItemRowSizes key={item.name} name={item.name} desc={item.desc} sizes={item.sizes} image={item.image} />
+      ))}
     </div>
   )
 }
  
 // ─────────────────────────────────────────────────────────────
-// Intro / Splash — shows the logo with a simple animation, then
-// fades out to reveal the site.
+// Intro / Splash — shows the (transparent) logo with a simple animation,
+// then fades out to reveal the site.
 // ─────────────────────────────────────────────────────────────
  
 function Splash({ visible }: { visible: boolean }) {
@@ -602,8 +596,8 @@ export default function App() {
           <GeometricPattern opacity={0.18} />
         </div>
  
-        {/* Logo — enlarged. Tagline "نفهم مزاجك" already lives inside this logo image,
-            so it is intentionally NOT repeated as separate text below anymore. */}
+        {/* Logo — transparent, no white background. Tagline "نفهم مزاجك" already
+            lives inside this logo image, so it is intentionally NOT repeated below. */}
         <div className="relative z-10 mb-2">
           <img
             src={logoImg}
@@ -636,7 +630,7 @@ export default function App() {
           <>
             <CategoryHeader ar="المشروبات الحارة (أكواب)" />
             <SectionBanner
-              src={teaImg}
+              src={bannerHotTea}
               title="المشروبات الحارة"
               tagline="دفء يُرافق لحظاتك.. ونكهة تنتهج مزاجك"
             />
@@ -647,7 +641,7 @@ export default function App() {
         {activeTab === "coffee-today" && (
           <>
             <CategoryHeader ar="قهوة اليوم" />
-            <SectionBanner src={coffeeImg} title="قهوة اليوم" tagline="بداية يومك بكوب يليق بك" />
+            <SectionBanner src={bannerCoffee} title="قهوة اليوم" tagline="بداية يومك بكوب يليق بك" />
             <SizeItemList items={coffeeTodayItems} />
           </>
         )}
@@ -656,7 +650,7 @@ export default function App() {
           <>
             <CategoryHeader ar="المشروبات الباردة" />
             <SectionBanner
-              src={hibiscusImg}
+              src={bannerColdHibiscus}
               title="المشروبات الباردة"
               tagline="مشروبات منعشة بمكونات طبيعية طازجة"
             />
@@ -668,7 +662,7 @@ export default function App() {
           <>
             <CategoryHeader ar="شباتي" />
             <SectionBanner
-              src={shabatiImg}
+              src={bannerShabati}
               title="شباتي طازج يومياً"
               tagline="محضّر على الطاوة بمكونات طازجة كل يوم"
             />
@@ -683,7 +677,7 @@ export default function App() {
           <>
             <CategoryHeader ar="الفطائر" />
             <SectionBanner
-              src={zaatarImg}
+              src={bannerFatayer}
               title="فطائر طازجة يومياً"
               tagline="عجينة طازجة ومكونات مختارة بعناية"
             />
@@ -695,7 +689,7 @@ export default function App() {
           <>
             <CategoryHeader ar="الحلويات" />
             <SectionBanner
-              src={sabousaImg}
+              src={bannerSweetsCookie}
               title="الحلويات"
               tagline="حلا يليق بلحظاتك.. بمذاق لا يُنسى"
             />
@@ -707,20 +701,24 @@ export default function App() {
           <>
             <CategoryHeader ar="مجلس شاي هام" />
  
-            {/* مجلس الشاي */}
-            <div
-              className="relative overflow-hidden rounded-2xl mb-4 p-6"
-              style={{ background: "var(--maroon)", boxShadow: "0 6px 32px rgba(107,20,20,0.25)" }}
-            >
-              <div className="absolute top-0 left-0 opacity-10 pointer-events-none">
-                <GeometricPattern opacity={1} />
-              </div>
-              <div className="relative z-10 text-center">
+            {/* مجلس الشاي — نفس الصورة المرسلة */}
+            <div className="relative overflow-hidden rounded-2xl mb-6" style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}>
+              <img
+                src={majlisShai}
+                alt="مجلس الشاي"
+                className="w-full object-cover"
+                style={{ height: 240, objectPosition: "center" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, rgba(74,14,14,0.88) 0%, transparent 55%)" }}
+              />
+              <div className="absolute bottom-0 left-0 right-0 px-5 py-5 text-center">
                 <p className="font-display text-xl font-bold text-white mb-1">مجلس الشاي</p>
-                <p className="font-display text-3xl font-bold mb-4" style={{ color: "var(--gold-light)" }}>
+                <p className="font-display text-2xl font-bold mb-3" style={{ color: "var(--gold-light)" }}>
                   ٢٩ ر.س
                 </p>
-                <div className="space-y-2 text-right">
+                <div className="space-y-1.5 text-right max-w-[260px] mx-auto">
                   <div className="flex items-center gap-2">
                     <DiamondIcon />
                     <p className="text-sm text-white">إبريق شاهي (كرك أو نعناع)</p>
@@ -734,22 +732,23 @@ export default function App() {
                     <p className="text-sm text-white">شابورة بنكهة الأصالة</p>
                   </div>
                 </div>
-                <div
-                  className="mt-4 rounded-xl px-4 py-3"
-                  style={{ background: "rgba(200,135,26,0.15)", border: "1px solid rgba(200,135,26,0.4)" }}
-                >
-                  <p className="font-display text-sm font-bold mb-0.5" style={{ color: "var(--gold-light)" }}>
-                    مجاناً
-                  </p>
-                  <p className="text-xs text-white opacity-90">اختر نوع واحد من المكسرات مجاناً</p>
-                </div>
               </div>
             </div>
  
-            {/* مجلس القهوة */}
+            <div
+              className="rounded-xl px-4 py-3 mb-6 text-center"
+              style={{ background: "rgba(200,135,26,0.15)", border: "1px solid rgba(200,135,26,0.4)" }}
+            >
+              <p className="font-display text-sm font-bold mb-0.5" style={{ color: "var(--maroon)" }}>
+                مجاناً
+              </p>
+              <p className="text-xs" style={{ color: "var(--text-muted)" }}>اختر نوع واحد من المكسرات مجاناً</p>
+            </div>
+ 
+            {/* مجلس القهوة — نفس الصورة المرسلة */}
             <div className="relative overflow-hidden rounded-2xl mb-8" style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}>
               <img
-                src={gingerImg}
+                src={majlisGahwa}
                 alt="مجلس القهوة"
                 className="w-full object-cover"
                 style={{ height: 240, objectPosition: "center" }}
@@ -806,7 +805,7 @@ export default function App() {
         </div>
  
         <div className="relative z-10">
-          {/* Logo — enlarged slightly */}
+          {/* Logo — transparent, brightened for visibility on the maroon background */}
           <img
             src={logoImg}
             alt="شعار شاي هام"
@@ -835,24 +834,26 @@ export default function App() {
                 حي الشفا – طريق الإمام مالك
               </p>
             </div>
+            {/* WhatsApp — now a simple outline phone icon, matching the clock/pin style beside it */}
             <a
               href="https://wa.me/966553299877"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2"
+              dir="ltr"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-70" style={{ color: "var(--gold-light)" }}>
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                <path d="M12 2C6.477 2 2 6.477 2 12c0 1.936.552 3.744 1.507 5.276L2 22l4.845-1.472A9.953 9.953 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.94 7.94 0 0 1-4.06-1.115l-.29-.172-3.017.917.925-2.995-.19-.307A7.96 7.96 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" />
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
               <p className="text-sm" style={{ color: "rgba(255,255,255,0.75)" }}>
-                055 329 9877
+                +966 55 329 9877
               </p>
             </a>
           </div>
  
           {/* Social icons row — real accounts, each opens the actual platform */}
           <div className="flex justify-center gap-5 mt-6">
+            {/* Snapchat — clean, recognizable ghost outline */}
             <a
               href="https://www.snapchat.com/add/shayhaam"
               target="_blank"
@@ -861,8 +862,8 @@ export default function App() {
               className="w-9 h-9 rounded-full flex items-center justify-center"
               style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(200,135,26,0.4)" }}
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)">
-                <path d="M12 2C8.5 2 6 4.5 6 8v1.5C5 9.7 4 10.2 4 11c0 .8.7 1.4 1.5 1.5-.2.8-.7 1.5-1.5 2C5.5 15 7 15.5 8 16c.3.5.8 1 1.5 1.5-.5.2-1.5.5-1.5 1s2 1 4 1 4-.5 4-1-1-.8-1.5-1.5c.7-.5 1.2-1 1.5-1.5 1-.5 2.5-1 4-1.5-.8-.5-1.3-1.2-1.5-2 .8-.1 1.5-.7 1.5-1.5 0-.8-1-1.3-2-1.5V8c0-3.5-2.5-6-6-6z" />
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="rgba(255,255,255,0.85)">
+                <path d="M12.03 2c3.16 0 5.52 2.3 5.6 5.5.03 1.06-.03 2.02-.14 2.87.1.05.25.08.44.04.32-.06.68-.2 1.06-.2.66 0 1.2.4 1.24 1 .04.62-.44 1.1-1.13 1.5-.14.08-.33.16-.5.24-.28.13-.58.28-.66.44-.06.12-.02.24.08.4.2.32.55.7.6 1.1.03.24-.05.46-.24.62-.24.2-.63.33-1.1.44-.1.02-.2.04-.28.09-.1.06-.13.15-.12.28.02.2.08.46.13.72.06.28.11.55.11.78 0 .38-.27.6-.72.6-.08 0-.17-.01-.27-.02-.22-.03-.46-.09-.68-.14-.24-.06-.47-.11-.65-.11-.12 0-.22.02-.3.07-.32.18-.62.65-.98 1.18-.62.9-1.4 2.02-2.99 2.02s-2.37-1.11-2.99-2.02c-.36-.53-.66-1-.98-1.18a.66.66 0 0 0-.3-.07c-.18 0-.41.05-.65.11-.22.05-.46.11-.68.14-.1.01-.19.02-.27.02-.45 0-.72-.22-.72-.6 0-.23.05-.5.11-.78.05-.26.11-.52.13-.72.01-.13-.02-.22-.12-.28-.08-.05-.18-.07-.28-.09-.47-.11-.86-.24-1.1-.44-.19-.16-.27-.38-.24-.62.05-.4.4-.78.6-1.1.1-.16.14-.28.08-.4-.08-.16-.38-.31-.66-.44-.17-.08-.36-.16-.5-.24-.69-.4-1.17-.88-1.13-1.5.04-.6.58-1 1.24-1 .38 0 .74.14 1.06.2.19.04.34.01.44-.04-.11-.85-.17-1.81-.14-2.87C6.51 4.3 8.87 2 12.03 2z" />
               </svg>
             </a>
             <a
@@ -913,5 +914,3 @@ export default function App() {
   )
 }
  
-
-
