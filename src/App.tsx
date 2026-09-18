@@ -1,9 +1,8 @@
-SX
 import { useState, useEffect } from "react"
- 
+
 // ── Logo (transparent, no white background) ──
 import logoImg from "@/assets/logo_transparent.png"
- 
+
 // ── Section banners (large, one per section — cropped clean photos) ──
 import bannerHotTea from "@/assets/menu/banner_hot_tea.jpg"
 import bannerCoffee from "@/assets/menu/banner_coffee.jpg"
@@ -11,11 +10,11 @@ import bannerColdHibiscus from "@/assets/menu/banner_cold_hibiscus.jpg"
 import bannerShabati from "@/assets/menu/banner_shabati.jpg"
 import bannerFatayer from "@/assets/menu/banner_fatayer.jpg"
 import bannerSweetsCookie from "@/assets/menu/banner_sweets_cookie.jpg"
- 
+
 // ── مجلس شاي هام ──
 import majlisShai from "@/assets/menu/majlis_shai.jpg"
 import majlisGahwa from "@/assets/menu/majlis_gahwa.jpg"
- 
+
 // ── المشروبات الحارة (أكواب) ──
 import talqeemaImg from "@/assets/menu/talqeema.jpg"
 import bukharImg from "@/assets/menu/bukhar.jpg"
@@ -23,11 +22,11 @@ import karakImg from "@/assets/menu/karak.jpg"
 import maghribiImg from "@/assets/menu/maghribi.jpg"
 import gingerMilkImg from "@/assets/menu/ginger_milk.jpg"
 import naanaaImg from "@/assets/menu/naanaa.jpg"
- 
+
 // ── قهوة اليوم ──
 import coffeeHotImg from "@/assets/menu/coffee_hot.jpg"
 import coffeeColdImg from "@/assets/menu/coffee_cold.jpg"
- 
+
 // ── المشروبات الباردة ──
 import mojitoPassionImg from "@/assets/menu/mojito_passionfruit.jpg"
 import mojitoRedBerryImg from "@/assets/menu/mojito_redberry.jpg"
@@ -35,7 +34,7 @@ import mojitoCherryImg from "@/assets/menu/mojito_cherry.jpg"
 import hibiscusCupImg from "@/assets/menu/hibiscus_cup.jpg"
 import icedPeachTeaImg from "@/assets/menu/iced_peach_tea.jpg"
 import mojitoBlueberryImg from "@/assets/menu/mojito_blueberry.jpg"
- 
+
 // ── شباتي ──
 import shabatiCheeseHoneyImg from "@/assets/menu/shabati_cheese_honey.jpg"
 import shabatiTunaImg from "@/assets/menu/shabati_tuna.jpg"
@@ -45,7 +44,7 @@ import shabatiEggShakshukaImg from "@/assets/menu/shabati_egg_shakshuka.jpg"
 import shabatiCheeseHalloumiImg from "@/assets/menu/shabati_cheese_halloumi.jpg"
 import shabatiCheesePotatoImg from "@/assets/menu/shabati_cheese_potato.jpg"
 import shabatiCheeseLiquidImg from "@/assets/menu/shabati_cheese_liquid.jpg"
- 
+
 // ── الفطائر ──
 import fatayerLabnaZaatarImg from "@/assets/menu/fatayer_labna_zaatar.jpg"
 import fatayerSausageCheeseImg from "@/assets/menu/fatayer_sausage_cheese.jpg"
@@ -55,7 +54,7 @@ import fatayerTunaImg from "@/assets/menu/fatayer_tuna.jpg"
 import fatayerCheeseLiquidImg from "@/assets/menu/fatayer_cheese_liquid.jpg"
 import fatayerCheeseSaltyImg from "@/assets/menu/fatayer_cheese_salty.jpg"
 import fatayerHoneycombImg from "@/assets/menu/fatayer_honeycomb.jpg"
- 
+
 // ── الحلويات ──
 import sabousaImg from "@/assets/menu/sabousa.jpg"
 import cookiesImg from "@/assets/menu/cookies.jpg"
@@ -63,11 +62,11 @@ import shabouraImg from "@/assets/menu/shaboura.jpg"
 import cheesecakeIcecreamImg from "@/assets/menu/cheesecake_icecream.jpg"
 import nutsRoyalImg from "@/assets/menu/nuts_royal.jpg"
 import nutsTurkishImg from "@/assets/menu/nuts_turkish.jpg"
- 
+
 // ─────────────────────────────────────────────────────────────
 // Decorative helpers (unchanged look & feel from the original design)
 // ─────────────────────────────────────────────────────────────
- 
+
 function GeometricPattern({
   opacity = 0.12,
   scale = 1,
@@ -113,7 +112,7 @@ function GeometricPattern({
     </svg>
   )
 }
- 
+
 function OrnamentalDivider({ label }: { label?: string }) {
   return (
     <div className="flex items-center gap-3 my-1">
@@ -133,7 +132,7 @@ function OrnamentalDivider({ label }: { label?: string }) {
     </div>
   )
 }
- 
+
 function CategoryHeader({ ar }: { ar: string }) {
   return (
     <div className="mb-6">
@@ -149,7 +148,7 @@ function CategoryHeader({ ar }: { ar: string }) {
     </div>
   )
 }
- 
+
 function DiamondIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -157,7 +156,7 @@ function DiamondIcon() {
     </svg>
   )
 }
- 
+
 // One big representative photo for the section + a short tagline underneath
 function SectionBanner({
   src,
@@ -187,7 +186,7 @@ function SectionBanner({
     </div>
   )
 }
- 
+
 // Small square photo (or none) + name/desc + single price — used for every menu row
 function SmallItemRow({
   name,
@@ -232,7 +231,7 @@ function SmallItemRow({
     </div>
   )
 }
- 
+
 // Small square photo (or none) + name/desc + multiple sizes (وسط/كبير/زجاج)
 function SmallItemRowSizes({
   name,
@@ -284,12 +283,12 @@ function SmallItemRowSizes({
     </div>
   )
 }
- 
+
 // ─────────────────────────────────────────────────────────────
 // Tabs — order + names exactly as Khaled specified. "المكسرات والفشار" removed,
 // its items now live inside "الحلويات".
 // ─────────────────────────────────────────────────────────────
- 
+
 const TABS = [
   { id: "hot-cups", label: "المشروبات الحارة (أكواب)" },
   { id: "coffee-today", label: "قهوة اليوم" },
@@ -299,9 +298,9 @@ const TABS = [
   { id: "sweets", label: "الحلويات" },
   { id: "majlis", label: "مجلس شاي هام" },
 ] as const
- 
+
 type TabId = (typeof TABS)[number]["id"]
- 
+
 function TabBar({ active, onChange }: { active: TabId; onChange: (id: TabId) => void }) {
   return (
     <div
@@ -335,11 +334,11 @@ function TabBar({ active, onChange }: { active: TabId; onChange: (id: TabId) => 
     </div>
   )
 }
- 
+
 // ─────────────────────────────────────────────────────────────
 // Menu data
 // ─────────────────────────────────────────────────────────────
- 
+
 const hotCupsItems: {
   name: string
   desc?: string
@@ -407,7 +406,7 @@ const hotCupsItems: {
     image: maghribiImg,
   },
 ]
- 
+
 const coffeeTodayItems: { name: string; desc?: string; sizes: { label: string; price: string }[]; image?: string }[] = [
   {
     name: "قهوة حارة",
@@ -428,7 +427,7 @@ const coffeeTodayItems: { name: string; desc?: string; sizes: { label: string; p
     image: coffeeColdImg,
   },
 ]
- 
+
 const coldDrinkItems: { name: string; desc?: string; price: string; image?: string }[] = [
   {
     name: "كركديه بارد",
@@ -457,7 +456,7 @@ const coldDrinkItems: { name: string; desc?: string; price: string; image?: stri
     image: mojitoPassionImg,
   },
 ]
- 
+
 // الحلويات — يشمل الآن منتجات "المكسرات والفشار" بعد دمج القسمين
 const sweetsItems: { name: string; desc?: string; price: string; image?: string }[] = [
   {
@@ -476,7 +475,7 @@ const sweetsItems: { name: string; desc?: string; price: string; image?: string 
   { name: "مكسرات ملكي", desc: "تشكيلة مكسرات ملكية فاخرة", price: "5", image: nutsRoyalImg },
   { name: "مكسرات تركي", desc: "تشكيلة مكسرات تركية مشكلة", price: "4", image: nutsTurkishImg },
 ]
- 
+
 const shabatiItems: { name: string; desc?: string; price: string; image?: string }[] = [
   { name: "بيض", desc: "شباتي طازج محشو بالبيض، خفيف ولذيذ", price: "6", image: shabatiEggImg },
   { name: "شكشوكة", desc: "شكشوكة طازجة بنكهة غنية", price: "6", image: shabatiEggShakshukaImg },
@@ -488,7 +487,7 @@ const shabatiItems: { name: string; desc?: string; price: string; image?: string
   { name: "حلومي", desc: "جبن حلوم طبيعي مشوي", price: "9", image: shabatiCheeseHalloumiImg },
   { name: "مقلقل دجاج (صباح)", desc: "دجاج مقلقل طازج، متاح صباحاً", price: "8" },
 ]
- 
+
 const fatayerItems: { name: string; desc?: string; price: string; image?: string }[] = [
   { name: "فطيرة بيض بالجبن", desc: "بيض طازج مع جبن كريمي على عجينة مخبوزة يومياً", price: "8", image: fatayerEggCheeseImg },
   { name: "فطيرة جبن سائل", desc: "جبن سائل كريمي طبيعي على خبز طازج مخبوز يومياً", price: "7", image: fatayerCheeseLiquidImg },
@@ -500,11 +499,11 @@ const fatayerItems: { name: string; desc?: string; price: string; image?: string
   { name: "فطيرة حلومي", desc: "جبن حلوم طبيعي مشوي على عجينة طازجة", price: "9", image: fatayerHalloumiImg },
   { name: "خلية نحل", desc: "عجينة طرية محشوة على شكل خلية نحل", price: "7", image: fatayerHoneycombImg },
 ]
- 
+
 // ─────────────────────────────────────────────────────────────
 // List renderers — every row can carry a small photo now
 // ─────────────────────────────────────────────────────────────
- 
+
 function ItemList({ items }: { items: { name: string; desc?: string; price: string; image?: string }[] }) {
   return (
     <div className="mb-8">
@@ -514,7 +513,7 @@ function ItemList({ items }: { items: { name: string; desc?: string; price: stri
     </div>
   )
 }
- 
+
 function SizeItemList({
   items,
 }: {
@@ -528,12 +527,12 @@ function SizeItemList({
     </div>
   )
 }
- 
+
 // ─────────────────────────────────────────────────────────────
 // Intro / Splash — shows the (transparent) logo with a simple animation,
 // then fades out to reveal the site.
 // ─────────────────────────────────────────────────────────────
- 
+
 function Splash({ visible }: { visible: boolean }) {
   return (
     <div
@@ -566,20 +565,20 @@ function Splash({ visible }: { visible: boolean }) {
     </div>
   )
 }
- 
+
 // ─────────────────────────────────────────────────────────────
 // App
 // ─────────────────────────────────────────────────────────────
- 
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>("hot-cups")
   const [showSplash, setShowSplash] = useState(true)
- 
+
   useEffect(() => {
     const timer = setTimeout(() => setShowSplash(false), 1800)
     return () => clearTimeout(timer)
   }, [])
- 
+
   return (
     <>
       <Splash visible={showSplash} />
@@ -595,7 +594,7 @@ export default function App() {
         <div className="absolute top-0 right-0 h-full flex items-center pointer-events-none" style={{ transform: "scaleX(-1)" }}>
           <GeometricPattern opacity={0.18} />
         </div>
- 
+
         {/* Logo — transparent, no white background. Tagline "نفهم مزاجك" already
             lives inside this logo image, so it is intentionally NOT repeated below. */}
         <div className="relative z-10 mb-2">
@@ -606,24 +605,24 @@ export default function App() {
             style={{ width: 300, height: 220 }}
           />
         </div>
- 
+
         <div className="relative z-10 mt-6 flex items-center gap-2">
           <div className="w-10 h-px" style={{ background: "var(--maroon)", opacity: 0.3 }} />
           <div className="w-2 h-2 rotate-45" style={{ background: "var(--gold)" }} />
           <div className="w-10 h-px" style={{ background: "var(--maroon)", opacity: 0.3 }} />
         </div>
       </section>
- 
+
       {/* ── About strip ── */}
       <section className="px-6 py-5 text-center" style={{ background: "var(--maroon)" }}>
         <p className="font-display text-lg text-white leading-relaxed" style={{ letterSpacing: "0.02em" }}>
           تجربة شاي فاخرة&nbsp;·&nbsp;مكونات طبيعية مختارة بعناية
         </p>
       </section>
- 
+
       {/* ── Tabs ── */}
       <TabBar active={activeTab} onChange={setActiveTab} />
- 
+
       {/* ── Menu Content ── */}
       <main className="mx-auto max-w-md px-5 py-8">
         {activeTab === "hot-cups" && (
@@ -637,7 +636,7 @@ export default function App() {
             <SizeItemList items={hotCupsItems} />
           </>
         )}
- 
+
         {activeTab === "coffee-today" && (
           <>
             <CategoryHeader ar="قهوة اليوم" />
@@ -645,7 +644,7 @@ export default function App() {
             <SizeItemList items={coffeeTodayItems} />
           </>
         )}
- 
+
         {activeTab === "cold-drinks" && (
           <>
             <CategoryHeader ar="المشروبات الباردة" />
@@ -657,7 +656,7 @@ export default function App() {
             <ItemList items={coldDrinkItems} />
           </>
         )}
- 
+
         {activeTab === "shabati" && (
           <>
             <CategoryHeader ar="شباتي" />
@@ -672,7 +671,7 @@ export default function App() {
             </p>
           </>
         )}
- 
+
         {activeTab === "fatayer" && (
           <>
             <CategoryHeader ar="الفطائر" />
@@ -684,7 +683,7 @@ export default function App() {
             <ItemList items={fatayerItems} />
           </>
         )}
- 
+
         {activeTab === "sweets" && (
           <>
             <CategoryHeader ar="الحلويات" />
@@ -696,11 +695,11 @@ export default function App() {
             <ItemList items={sweetsItems} />
           </>
         )}
- 
+
         {activeTab === "majlis" && (
           <>
             <CategoryHeader ar="مجلس شاي هام" />
- 
+
             {/* مجلس الشاي — نفس الصورة المرسلة */}
             <div className="relative overflow-hidden rounded-2xl mb-6" style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}>
               <img
@@ -734,7 +733,7 @@ export default function App() {
                 </div>
               </div>
             </div>
- 
+
             <div
               className="rounded-xl px-4 py-3 mb-6 text-center"
               style={{ background: "rgba(200,135,26,0.15)", border: "1px solid rgba(200,135,26,0.4)" }}
@@ -744,7 +743,7 @@ export default function App() {
               </p>
               <p className="text-xs" style={{ color: "var(--text-muted)" }}>اختر نوع واحد من المكسرات مجاناً</p>
             </div>
- 
+
             {/* مجلس القهوة — نفس الصورة المرسلة */}
             <div className="relative overflow-hidden rounded-2xl mb-8" style={{ boxShadow: "0 6px 32px rgba(107,20,20,0.18)" }}>
               <img
@@ -782,7 +781,7 @@ export default function App() {
                 </div>
               </div>
             </div>
- 
+
             <div
               className="rounded-xl px-4 py-3 mb-10 text-center"
               style={{ background: "rgba(200, 135, 26, 0.08)", border: "1px solid rgba(200, 135, 26, 0.25)" }}
@@ -794,7 +793,7 @@ export default function App() {
           </>
         )}
       </main>
- 
+
       {/* ── Footer ── */}
       <footer className="relative overflow-hidden px-6 py-10 text-center" style={{ background: "var(--maroon)" }}>
         <div className="absolute top-0 left-0 opacity-10 pointer-events-none">
@@ -803,7 +802,7 @@ export default function App() {
         <div className="absolute top-0 right-0 opacity-10 pointer-events-none" style={{ transform: "scaleX(-1)" }}>
           <GeometricPattern opacity={1} />
         </div>
- 
+
         <div className="relative z-10">
           {/* Logo — transparent, brightened for visibility on the maroon background */}
           <img
@@ -812,9 +811,9 @@ export default function App() {
             className="mx-auto object-contain mb-4 opacity-90"
             style={{ width: 170, height: 120, filter: "brightness(5)" }}
           />
- 
+
           <OrnamentalDivider />
- 
+
           <div className="mt-5 space-y-2">
             <div className="flex items-center justify-center gap-2">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="opacity-70" style={{ color: "var(--gold-light)" }}>
@@ -835,7 +834,7 @@ export default function App() {
               </p>
             </div>
             {/* WhatsApp — now a simple outline phone icon, matching the clock/pin style beside it */}
-            <a
+            
               href="https://wa.me/966553299877"
               target="_blank"
               rel="noopener noreferrer"
@@ -850,11 +849,11 @@ export default function App() {
               </p>
             </a>
           </div>
- 
+
           {/* Social icons row — real accounts, each opens the actual platform */}
           <div className="flex justify-center gap-5 mt-6">
             {/* Snapchat — clean, recognizable ghost outline */}
-            <a
+            
               href="https://www.snapchat.com/add/shayhaam"
               target="_blank"
               rel="noopener noreferrer"
@@ -866,7 +865,7 @@ export default function App() {
                 <path d="M12.03 2c3.16 0 5.52 2.3 5.6 5.5.03 1.06-.03 2.02-.14 2.87.1.05.25.08.44.04.32-.06.68-.2 1.06-.2.66 0 1.2.4 1.24 1 .04.62-.44 1.1-1.13 1.5-.14.08-.33.16-.5.24-.28.13-.58.28-.66.44-.06.12-.02.24.08.4.2.32.55.7.6 1.1.03.24-.05.46-.24.62-.24.2-.63.33-1.1.44-.1.02-.2.04-.28.09-.1.06-.13.15-.12.28.02.2.08.46.13.72.06.28.11.55.11.78 0 .38-.27.6-.72.6-.08 0-.17-.01-.27-.02-.22-.03-.46-.09-.68-.14-.24-.06-.47-.11-.65-.11-.12 0-.22.02-.3.07-.32.18-.62.65-.98 1.18-.62.9-1.4 2.02-2.99 2.02s-2.37-1.11-2.99-2.02c-.36-.53-.66-1-.98-1.18a.66.66 0 0 0-.3-.07c-.18 0-.41.05-.65.11-.22.05-.46.11-.68.14-.1.01-.19.02-.27.02-.45 0-.72-.22-.72-.6 0-.23.05-.5.11-.78.05-.26.11-.52.13-.72.01-.13-.02-.22-.12-.28-.08-.05-.18-.07-.28-.09-.47-.11-.86-.24-1.1-.44-.19-.16-.27-.38-.24-.62.05-.4.4-.78.6-1.1.1-.16.14-.28.08-.4-.08-.16-.38-.31-.66-.44-.17-.08-.36-.16-.5-.24-.69-.4-1.17-.88-1.13-1.5.04-.6.58-1 1.24-1 .38 0 .74.14 1.06.2.19.04.34.01.44-.04-.11-.85-.17-1.81-.14-2.87C6.51 4.3 8.87 2 12.03 2z" />
               </svg>
             </a>
-            <a
+            
               href="https://instagram.com/shayhaam"
               target="_blank"
               rel="noopener noreferrer"
@@ -880,7 +879,7 @@ export default function App() {
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
               </svg>
             </a>
-            <a
+            
               href="https://www.tiktok.com/@shayhaam"
               target="_blank"
               rel="noopener noreferrer"
@@ -893,7 +892,7 @@ export default function App() {
               </svg>
             </a>
           </div>
- 
+
           <div className="mt-7 flex justify-center">
             <div className="flex items-center gap-2">
               <div className="w-6 h-px" style={{ background: "var(--gold)", opacity: 0.5 }} />
@@ -903,7 +902,7 @@ export default function App() {
               <div className="w-6 h-px" style={{ background: "var(--gold)", opacity: 0.5 }} />
             </div>
           </div>
- 
+
           <p className="mt-4 text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
             شاي هام © ١٤٤٦
           </p>
@@ -913,4 +912,3 @@ export default function App() {
     </>
   )
 }
- 
