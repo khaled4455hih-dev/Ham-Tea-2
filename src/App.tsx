@@ -23,7 +23,7 @@ import secFatayerImg from "@/imports/sec-fatayer.jpg"
 import secSweetsImg from "@/imports/sec-sweets.jpg"
  
 /* ── مشروبات حارة ── */
-import teaTalgeemaImg from "@/imports/tea-talgeema.jpg"
+import teaTalgeemaImg from "@/imports/tea-bukhar.jpg"
 import teaBukharImg from "@/imports/tea-bukhar.jpg"
 import teaKarakImg from "@/imports/tea-karak.jpg"
 import teaMintImg from "@/imports/tea-mint.jpg"
